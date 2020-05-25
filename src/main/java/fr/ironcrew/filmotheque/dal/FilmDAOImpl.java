@@ -1,0 +1,56 @@
+package fr.ironcrew.filmotheque.dal;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+
+import fr.ironcrew.filmotheque.bo.Film;
+
+public class FilmDAOImpl implements FilmDAO{
+	@PersistenceContext
+	private EntityManager em;
+	
+	@Override
+	public void add(Film film) {
+		em.persist(film);
+		
+	}
+
+	@Override
+	public void update(Film film) {
+		if(!em.contains(film)) {
+			em.merge(film);
+		}
+		em.flush();
+		
+	}
+
+	@Override
+	public void delete(Film film) {
+		if(!em.contains(film)) {
+			em.merge(film);
+		}
+		em.remove(film);
+		
+	}
+
+	@Override
+	public List<Film> findAll() {
+		return em.createQuery("select f from Films t", Film.class).getResultList();
+	}
+
+	@Override
+	public Film findById(long id) {
+		return em.find(Film.class, id);
+	}
+
+	@Override
+	public void delete(Long id) {
+		Film film = findById(id);
+		delete(film);
+		
+	}
+
+}

@@ -1,0 +1,40 @@
+.myBar{
+	background-color:#3a5567;
+	height: 70px;
+	
+	
+}
+
+.myValid{
+	background-color:#304352;
+	
+	
+}
+.myCancel{
+	background-color:#990000;
+	
+	
+}
+.myTableHeader{
+	background-color:#777777;
+	color:white;
+	
+	
+}
+
+*.myFooter{
+	
+		background-color:#333333;
+}
+
+h4 a,h4 a:hover,h4 a:visited{
+	
+	text-decoration:none;
+	color:#999999;
+}
+
+h4 a:hover{
+	
+	text-decoration:none;
+	color:#990000;
+}
