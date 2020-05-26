@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="Films")
+@Table(name="films")
 @Component(value="film")
 public class Film {
 	
@@ -43,7 +43,7 @@ public class Film {
 	
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-        name = "Film_Artist", 
+        name = "film_artist", 
         joinColumns = { @JoinColumn(name = "film_id") }, 
         inverseJoinColumns = { @JoinColumn(name = "artist_id") }
     )
