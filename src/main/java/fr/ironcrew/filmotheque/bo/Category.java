@@ -24,7 +24,7 @@ public class Category {
 	@Column(name="name")
 	private String name;
 	
-	@OneToMany(mappedBy="id")
+	@OneToMany(mappedBy="category")
 	private List<Film> films;
 	
 	public Category() {
