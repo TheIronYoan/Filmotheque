@@ -5,9 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Component;
 
 import fr.ironcrew.filmotheque.bo.Film;
 
+@Component
 public class FilmDAOImpl implements FilmDAO{
 	@PersistenceContext
 	private EntityManager em;
@@ -38,7 +40,7 @@ public class FilmDAOImpl implements FilmDAO{
 
 	@Override
 	public List<Film> findAll() {
-		return em.createQuery("select f from Films t", Film.class).getResultList();
+		return em.createQuery("select f from films t", Film.class).getResultList();
 	}
 
 	@Override

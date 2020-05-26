@@ -10,7 +10,7 @@ import fr.ironcrew.filmotheque.bo.Film;
 public interface FilmManager {
 	public Film findById(  long id) throws FilmNonTrouveException ;
 
-	public void enregistrerTodo( Film todo)  ;
+	public void enregistrerTodo( Film film)  ;
 
 	public void supprimerTodo( Film id) throws FilmNonTrouveException ;
 	

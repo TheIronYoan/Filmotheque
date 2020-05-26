@@ -15,7 +15,7 @@ import fr.ironcrew.filmotheque.dal.FilmDAO;
 @Service
 public class FilmManagerImpl implements FilmManager{
 	// A remettre quand fichier modifié
-	//@Autowired
+	@Autowired
 	private FilmDAO dao;
 	
 	
@@ -26,11 +26,11 @@ public class FilmManagerImpl implements FilmManager{
 	
 
 	public Film findById(  long id) throws FilmNonTrouveException {
-		Film todo = dao.findById(id);
-		if(todo==null) {
+		Film film = dao.findById(id);
+		if(film==null) {
 			throw new FilmNonTrouveException();
 		}
-		return todo;
+		return film;
 	}
 
 	@Transactional

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:context="http://www.springframework.org/schema/context" 
+xmlns:jpa="http://www.springframework.org/schema/data/jpa" 
+xmlns:tx="http://www.springframework.org/schema/tx" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 <context:annotation-config/>
 <context:component-scan base-package="fr.ironcrew.filmotheque.ihm, fr.ironcrew.filmotheque.bll, fr.ironcrew.filmotheque.dal"/>
 <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -8,7 +13,7 @@
 <property name="suffix" value=".jsp"/>
 </bean>
 <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
-<jpa:repositories base-package="fr.eni.todo.dal" entity-manager-factory-ref="emf"/>
+<jpa:repositories base-package="fr.ironcrew.filmotheque.dal" entity-manager-factory-ref="emf"/>
 <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 <property name="location" value="/WEB-INF/datasource.properties"/>
 </bean>
@@ -23,7 +28,7 @@
 <property name="dataSource" ref="datasource"/>
 <property name="packagesToScan">
 <list>
-<value>ffr.ironcrew.filmotheque.bo</value>
+<value>fr.ironcrew.filmotheque.bo</value>
 </list>
 </property>
 <property name="jpaVendorAdapter">
@@ -34,7 +39,7 @@
 </property>
 <property name="jpaProperties">
 <props>
-<prop key="hibernate.hbm2ddl.auto">update</prop>
+<prop key="hibernate.hbm2ddl.auto">create</prop>
 <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
 </props>
 </property>

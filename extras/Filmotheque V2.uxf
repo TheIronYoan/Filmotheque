@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>19</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1292</x>
+      <y>950</y>
+      <w>399</w>
+      <h>361</h>
+    </coordinates>
+    <panel_attributes>Film
+--
+-id: int
+-name: String
+-relaseDate : datetime
+-category: Category
+-director: Artist
+-actors: List&lt;Artist&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1976</x>
+      <y>950</y>
+      <w>399</w>
+      <h>361</h>
+    </coordinates>
+    <panel_attributes>Category
+--
+-id: int
+-name: String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1672</x>
+      <y>1064</y>
+      <w>342</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..*
+m2=0..*
+appartient a &gt;</panel_attributes>
+    <additional_attributes>160.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1349</x>
+      <y>437</y>
+      <w>399</w>
+      <h>361</h>
+    </coordinates>
+    <panel_attributes>Artist
+--
+-id: int
+-firstname : String
+-name: String
+-director: boolean
+-actor: boolean
+-birth: datetime
+-nationality: String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1501</x>
+      <y>779</y>
+      <w>228</w>
+      <h>209</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=*
+m2=1
+&lt; intervient</panel_attributes>
+    <additional_attributes>30.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>741</x>
+      <y>931</y>
+      <w>399</w>
+      <h>380</h>
+    </coordinates>
+    <panel_attributes>User
+--
+-id: int
+-firstname: String
+-name: String
+-username: String
+-email: String
+-password: String
+-poweruser: boolean
+-administrator:boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

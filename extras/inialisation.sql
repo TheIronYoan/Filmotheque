@@ -1,0 +1,26 @@
+DROP DATABASE IF EXISTS filmodb;
+CREATE DATABASE filmodb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+DROP USER  IF EXISTS 'filmouser';
+CREATE USER 'filmouser';
+ALTER USER 'filmouser' IDENTIFIED BY 'filmopwd' ;
+GRANT Alter ON filmodb.* TO 'filmouser';
+GRANT Create ON filmodb.* TO 'filmouser';
+GRANT Create view ON filmodb.* TO 'filmouser';
+GRANT Delete ON filmodb.* TO 'filmouser';
+GRANT Delete history ON filmodb.* TO 'filmouser';
+GRANT Drop ON filmodb.* TO 'filmouser';
+GRANT Grant option ON filmodb.* TO 'filmouser';
+GRANT Index ON filmodb.* TO 'filmouser';
+GRANT Insert ON filmodb.* TO 'filmouser';
+GRANT References ON filmodb.* TO 'filmouser';
+GRANT Select ON filmodb.* TO 'filmouser';
+GRANT Show view ON filmodb.* TO 'filmouser';
+GRANT Trigger ON filmodb.* TO 'filmouser';
+GRANT Update ON filmodb.* TO 'filmouser';
+GRANT Alter routine ON filmodb.* TO 'filmouser';
+GRANT Create routine ON filmodb.* TO 'filmouser';
+GRANT Create temporary tables ON filmodb.* TO 'filmouser';
+GRANT Execute ON filmodb.* TO 'filmouser';
+GRANT Lock tables ON filmodb.* TO 'filmouser';
+FLUSH PRIVILEGES;
