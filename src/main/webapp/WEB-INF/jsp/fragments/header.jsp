@@ -5,23 +5,24 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ironnavbar"  style="background: linear-gradient(#193a53, #192945)">
   <div class="row w-100">
-	  	<div class="col-lg-1">
+	  	<div class="col-lg-2">
+	  		&nbsp;&nbsp;&nbsp;&nbsp;
 	  		<a class="navbar-brand" href="<%=request.getServletContext().getContextPath() %>">Filmotheque</a>
 	    </div>
-	    <div class="col-lg-10 text-center">
-	  		  <a class="btn btn-light btn-outline-primary float-left" href="<%=request.getServletContext().getContextPath() %>/app/logout">
+	    <div class="col-lg-8 text-center">
+	  		  <a class="btn btn-light btn-outline-primary " href="<%=request.getServletContext().getContextPath() %>/app/film/list">
 					Films
 				</a> 
-				 <a class="btn btn-light btn-outline-primary float-left" href="<%=request.getServletContext().getContextPath() %>/app/logout">
+				 <a class="btn btn-light btn-outline-primary " href="<%=request.getServletContext().getContextPath() %>/app/artist/list">
 					Artistes
 				</a>  
-				<a class="btn btn-light btn-outline-primary float-left" href="<%=request.getServletContext().getContextPath() %>/app/logout">
+				<a class="btn btn-light btn-outline-primary " href="<%=request.getServletContext().getContextPath() %>//app/category/list">
 					Categories
 				</a>
 	    </div>
-	   	<div class="col-lg-1 float-left"  style="background:#19ff45;">
+	   	<div class="col-lg-2 float-lg-right">
 					
-			   <a class="btn btn-light btn-outline-primary" href="<%=request.getServletContext().getContextPath() %>/app/logout">
+			   <a class="btn btn-light btn-outline-primary float-right" href="<%=request.getServletContext().getContextPath() %>/app/logout">
 					Deconnexion
 				</a>
 			 
