@@ -28,7 +28,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 <property name="dataSource" ref="datasource"/>
 <property name="packagesToScan">
 <list>
-<value>fr.ironcrew.filmotheque.bo,fr.ironcrew.filmotheque.bll,fr.ironcrew.filmotheque.dal,</value>
+<value>fr.ironcrew.filmotheque.bo</value>
 </list>
 </property>
 <property name="jpaVendorAdapter">
@@ -39,7 +39,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 </property>
 <property name="jpaProperties">
 <props>
-<prop key="hibernate.hbm2ddl.auto">create</prop>
+<prop key="hibernate.hbm2ddl.auto">update</prop>
 <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
 </props>
 </property>
