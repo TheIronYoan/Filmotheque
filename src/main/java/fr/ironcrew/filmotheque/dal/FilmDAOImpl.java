@@ -40,7 +40,7 @@ public class FilmDAOImpl implements FilmDAO{
 
 	@Override
 	public List<Film> findAll() {
-		return em.createQuery("select f from films t", Film.class).getResultList();
+		return em.createQuery("select * from films f", Film.class).getResultList();
 	}
 
 	@Override

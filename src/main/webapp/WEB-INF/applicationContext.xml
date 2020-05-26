@@ -6,17 +6,20 @@ xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 xmlns:tx="http://www.springframework.org/schema/tx" 
 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 <context:annotation-config/>
-<context:component-scan base-package="fr.ironcrew.filmotheque.ihm, fr.ironcrew.filmotheque.bll, fr.ironcrew.filmotheque.dal"/>
+<context:component-scan base-package="fr.ironcrew.filmotheque.ihm, fr.ironcrew.filmotheque.bll, fr.ironcrew.filmotheque.dal, fr.ironcrew.filmotheque.bo"/>
 <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
 <property name="prefix" value="/WEB-INF/jsp/"/>
 <property name="suffix" value=".jsp"/>
 </bean>
+
+
 <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 <jpa:repositories base-package="fr.ironcrew.filmotheque.dal" entity-manager-factory-ref="emf"/>
 <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 <property name="location" value="/WEB-INF/datasource.properties"/>
 </bean>
+
 <bean id="datasource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 <property name="driverClassName" value="${driver}"/>
 <property name="url" value="${url}"/>
@@ -28,7 +31,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 <property name="dataSource" ref="datasource"/>
 <property name="packagesToScan">
 <list>
-<value>fr.ironcrew.filmotheque.bo</value>
+<value>fr.ironcrew.filmotheque.bo,fr.ironcrew.filmotheque.bll,fr.ironcrew.filmotheque.dal,</value>
 </list>
 </property>
 <property name="jpaVendorAdapter">
