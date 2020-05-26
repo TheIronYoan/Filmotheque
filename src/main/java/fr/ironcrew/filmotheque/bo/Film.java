@@ -30,14 +30,14 @@ public class Film {
 	@Column(name="releaseDate")
 	private LocalDate releaseDate;
 	
-	@Column(name="category")
-	private Category category;
-	
-	@Column(name="director")
-	private Artist director;
-	
-	@Column(name="actors")
-	private List<Artist> actors;
+//	@Column(name="category")
+//	private Category category;
+//	
+//	@Column(name="director")
+//	private Artist director;
+//	
+//	@Column(name="actors")
+//	private List<Artist> actors;
 
 	public Film() {
 		super();
@@ -48,9 +48,9 @@ public class Film {
 		this.id = id;
 		this.name = name;
 		this.releaseDate = releaseDate;
-		this.category = category;
-		this.director = director;
-		this.actors = actors;
+//		this.category = category;
+//		this.director = director;
+//		this.actors = actors;
 	}
 
 	public int getId() {
@@ -76,33 +76,30 @@ public class Film {
 	public void setReleaseDate(LocalDate releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-	public Artist getDirector() {
-		return director;
-	}
-
-	public void setDirector(Artist director) {
-		this.director = director;
-	}
-
-	public List<Artist> getActors() {
-		return actors;
-	}
-
-	public void setActors(List<Artist> actors) {
-		this.actors = actors;
-	}
+//
+//	public Category getCategory() {
+//		return category;
+//	}
+//
+//	public void setCategory(Category category) {
+//		this.category = category;
+//	}
+//
+//	public Artist getDirector() {
+//		return director;
+//	}
+//
+//	public void setDirector(Artist director) {
+//		this.director = director;
+//	}
+//
+//	public List<Artist> getActors() {
+//		return actors;
+//	}
+//
+//	public void setActors(List<Artist> actors) {
+//		this.actors = actors;
+//	}
 
 	
-
-
-
 }

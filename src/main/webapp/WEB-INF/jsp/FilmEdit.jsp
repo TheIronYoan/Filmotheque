@@ -6,25 +6,20 @@
 <jsp:include page="/WEB-INF/jsp/fragments/head.jsp"></jsp:include>
 
 <body>
-
 	<%@ include file="./fragments/header.jsp"%>
-	
-	
-		<br><br>
+	<br><br>
 	<main role="main">
-
 		<div class="container myMainContainer">
-
-	<h1 class="text-center">Edition 
-		<c:if test="${todo.id==0}">
-			Nouvelle
-		 </c:if>
-		 Tache 
-		 <c:if test="${todo.id!=0}">
-			 ${todo.id}
-		 </c:if>
-	 </h1>
-		<form action="/TODO/app/edit" method="post">	
+		<h1 class="text-center">Edition 
+			<c:if test="${film.id==0}">
+				Nouvelle
+			 </c:if>
+			 Tache 
+			 <c:if test="${todo.id!=0}">
+				 ${todo.id}
+			 </c:if>
+		 </h1>
+		 <form action="/TODO/app/edit" method="post">	
 			<div class="form-group">
 				
 	  			<input type="hidden" class="form-control"  name="task" id="name" aria-describedby="" placeholder="" value="${todo.id}">

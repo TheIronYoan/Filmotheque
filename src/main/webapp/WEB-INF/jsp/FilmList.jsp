@@ -19,11 +19,11 @@
 	
 	<table class="table">
 		 	 <tbody>
-				<c:forEach items="${todos}" var="todo" >
+				<c:forEach items="${films}" var="film" >
 				    <tr>
 				      <th scope="row" class="text-center">${todo.description}</th>
-				      <td><a href="/TODO/app/edit?task=${todo.id}"> Editer</a></td>
-				      <td><a href="/TODO/app/delete?task=${todo.id}"> Supprimer</a></td>
+				      <td><a href="<%=request.getServletContext().getContextPath() %>/app/edit?film=${film.id}"> Editer</a></td>
+				      <td><a href="<%=request.getServletContext().getContextPath() %>/app/delete?film=${film.id}"> Supprimer</a></td>
 				    </tr>
 			    </c:forEach>
 			  </tbody>

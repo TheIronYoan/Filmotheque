@@ -24,7 +24,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 <property name="password" value="${pass}"/>
 </bean>
 <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-<property name="persistenceUnitName" value="PU_DEMO"/>
+<property name="persistenceUnitName" value="PU_FILMO"/>
 <property name="dataSource" ref="datasource"/>
 <property name="packagesToScan">
 <list>

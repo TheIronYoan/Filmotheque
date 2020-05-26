@@ -1,7 +1,5 @@
 package fr.ironcrew.filmotheque.bo;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,15 +26,11 @@ public class Category {
 		
 	}
 	
-	
-
 	public Category(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
-
-
 
 	public int getId() {
 		return id;
