@@ -20,14 +20,25 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name="firstname")
 	private String firstname;
+	
+	@Column(name="name")
 	private String name;
+	
+	@Column(name="username")
 	private String username;
+	
+	@Column(name="email")
 	private String email;
 
+	@Column(name="password")
 	private String password;
 
+	@Column(name="poweruser")
 	private Boolean poweruser;
+	
+	@Column(name="administrator")
 	private Boolean administrator;
 	
 	
@@ -35,6 +46,24 @@ public class User {
 	public User() {
 		
 	}
+	
+	
+	
+	public User(Long id, String firstname, String name, String username, String email, String password,
+			Boolean poweruser, Boolean administrator) {
+		super();
+		this.id = id;
+		this.firstname = firstname;
+		this.name = name;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.poweruser = poweruser;
+		this.administrator = administrator;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
