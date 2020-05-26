@@ -35,7 +35,7 @@ public class FilmManagerImpl implements FilmManager{
 
 	@Transactional
 	public void enregistrerTodo( Film todo)  {
-		if(todo.getId()==null) {
+		if(todo.getId()==0) {
 			dao.add(todo);
 		}else {
 			dao.update(todo);
