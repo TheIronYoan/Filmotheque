@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="artist")
+@Table(name="artists")
 @Component(value="artist")
 public class Artist {
 	

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="category")
+@Table(name="categories")
 @Component(value="category")
 public class Category {
 	
