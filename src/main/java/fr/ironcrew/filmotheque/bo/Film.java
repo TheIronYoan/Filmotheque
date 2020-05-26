@@ -1,21 +1,24 @@
 package fr.ironcrew.filmotheque.bo;
 
-
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-
 @Entity
-@Table(name="films")
+@Table(name="Film")
 @Component(value="film")
 public class Film {
 	
@@ -28,22 +31,29 @@ public class Film {
 	private String name;
 	
 	@Column(name="releaseDate")
-	private LocalDate releaseDate;
+	private int releaseDate;
 	
-	@Column(name="category")
+	@ManyToOne
+    @JoinColumn(name="category_id", nullable=true)
 	private Category category;
 	
-	@Column(name="director")
+	@ManyToOne
+    @JoinColumn(name="director_id", nullable=true)
 	private Artist director;
 	
-	@Column(name="actors")
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "Film_Artist", 
+        joinColumns = { @JoinColumn(name = "film_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "artist_id") }
+    )
 	private List<Artist> actors;
 
 	public Film() {
 		super();
 	}
 
-	public Film(int id, String name, LocalDate releaseDate, Category category, Artist director, List<Artist> actors) {
+	public Film(int id, String name, int releaseDate, Category category, Artist director, List<Artist> actors) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -69,11 +79,11 @@ public class Film {
 		this.name = name;
 	}
 
-	public LocalDate getReleaseDate() {
+	public int getReleaseDate() {
 		return releaseDate;
 	}
 
-	public void setReleaseDate(LocalDate releaseDate) {
+	public void setReleaseDate(int releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 

@@ -2,12 +2,14 @@ package fr.ironcrew.filmotheque.bo;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -45,14 +47,18 @@ public class Artist {
 	@Column(name="nationality")
 	private String nationality;
 
+	@ManyToMany(mappedBy = "actors")
+	private List<Film> filmsActor;
 
 	public Artist() {
 		super();
 	}
 
 
+	
+
 	public Artist(int id, String firstname, String name, boolean director, boolean actor, LocalDate birth,
-			String nationality) {
+			String nationality, List<Film> filmsActor) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -61,7 +67,10 @@ public class Artist {
 		this.actor = actor;
 		this.birth = birth;
 		this.nationality = nationality;
+		this.filmsActor = filmsActor;
 	}
+
+
 
 
 	public int getId() {
@@ -131,6 +140,20 @@ public class Artist {
 
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
+	}
+
+
+
+
+	public List<Film> getFilmsActor() {
+		return filmsActor;
+	}
+
+
+
+
+	public void setFilmsActor(List<Film> filmsActor) {
+		this.filmsActor = filmsActor;
 	}
 	
 	
