@@ -1,0 +1,1 @@
+INSERT INTO `users` (`id`, `administrator`, `email`, `firstname`, `name`, `password`, `poweruser`, `username`) VALUES (NULL, b'1', 'bruno.hudbert2019@campus-eni.fr', 'Bruno', 'HUDBERT', 'e10adc3949ba59abbe56e057f20f883e', b'1', 'bhudbert');

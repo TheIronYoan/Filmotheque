@@ -56,15 +56,18 @@ public class MainController {
 	public String connexion(@RequestParam(name="username") String username
 							,@RequestParam(name="password") String password
 							,ModelMap model) {
-	//	System.out.println(user);
-		System.out.println("--------------------------------");
-		System.out.println(username + " - " + password);
-		try {
+		
+			try {
 
-			User testedUser = um.authentification(username, password);
-			model.addAttribute("userLogged", testedUser);
-
-			return "FilmList";
+				User testedUser = um.authentification(username, password);
+				if(!testedUser.getUsername().equals("inconnu")) {
+					model.addAttribute("userLogged", testedUser);
+				}
+				else {
+					return "Welcome";
+				}
+	
+				return "FilmList";
 			}
 			catch(Exception e) {
 				
@@ -82,7 +85,16 @@ public class MainController {
 	
 	@RequestMapping(path = "/film/list", method = RequestMethod.GET)
 	public String listFilm(@ModelAttribute("userLogged") User user
-			) {
+			,ModelMap model) {
+			List<Film> films = fm.findAllFilms();
+			model.addAttribute("films", films);
+			return "FilmList";
+		}
+	
+	@RequestMapping(path = "/film/list", method = RequestMethod.POST)
+	public String listFilmViaPost(ModelMap model) {
+			List<Film> films = fm.findAllFilms();
+			model.addAttribute("films", films);
 			return "FilmList";
 		}
 	

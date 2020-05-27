@@ -30,9 +30,17 @@ public class UserManagerImpl implements UserManager{
 	
 	public User authentification(String username,String password) {
 		
+		String passwordToTest = passwordHash(password);
 		User testedUser = dao.findByUsername(username);
 		
-		
+		if(passwordToTest.equals(testedUser.getPassword())){
+			System.out.println("Auth OK");
+			
+		}
+		else {
+			testedUser.setUsername("inconnu");
+			testedUser.setPassword("inconnu");
+			}
 		
 		return testedUser;
 	}
