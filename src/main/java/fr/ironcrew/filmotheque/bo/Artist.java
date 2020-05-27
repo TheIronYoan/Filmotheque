@@ -51,7 +51,7 @@ public class Artist {
 	@Column(name="nationality")
 	private String nationality;
 
-	@ManyToMany(mappedBy = "actors", cascade = { CascadeType.ALL })
+	@ManyToMany(mappedBy = "actors")
 	private List<Film> filmsActor;
 
 	public Artist() {
