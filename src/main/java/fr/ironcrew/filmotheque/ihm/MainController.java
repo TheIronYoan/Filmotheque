@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,6 +33,7 @@ import fr.ironcrew.filmotheque.bll.ArtistManager;
 import fr.ironcrew.filmotheque.bll.ArtistNonTrouveException;
 import fr.ironcrew.filmotheque.bll.CategoryManager;
 import fr.ironcrew.filmotheque.bll.CategoryNonTrouveException;
+
 import fr.ironcrew.filmotheque.bo.Artist;
 import fr.ironcrew.filmotheque.bo.Category;
 
@@ -48,22 +50,14 @@ public class MainController {
 	
 	@Autowired
 	private FilmManager fm;
-	
+
 	@Autowired
 	private ArtistManager am;
 
 	@Autowired
 	private CategoryManager cm;
 
-		/*
-	    * Add user in model attribute
-	    */
-	 //  @ModelAttribute("userLogged")
-	 //  public User user() {
-	 //     return new User();
-	 //  }
-
-	
+		
 	@RequestMapping(path = "/login", method = RequestMethod.GET)
 	public String welcome() {
 			return "Welcome";
@@ -147,8 +141,10 @@ public class MainController {
 	
 	@RequestMapping(path = "/artist/add", method = RequestMethod.POST)
 	public String addArtist(@RequestParam String action, @RequestParam String firstname,@RequestParam String name,
+
 			@RequestParam(required=false) boolean director,@RequestParam(required=false) boolean actor,
 			@RequestParam String birth,@RequestParam String nation) throws ParseException {
+
 		if ("enregistrer".equals(action)) {
 			Artist art= new Artist();
 			art.setFirstname(firstname);
@@ -179,7 +175,6 @@ public class MainController {
 		}
 			return "FilmList";
 		}
-	
 	
 	@RequestMapping(path = "/film/add", method = RequestMethod.GET)
 	public String addFilmPage(ModelMap model) {
@@ -231,6 +226,23 @@ public class MainController {
 			return "FilmList";
 		}
 	
+	@RequestMapping(path = "/artist/edit", method = RequestMethod.GET)
+	public String editArtist(
+			@RequestParam(defaultValue = "0",name="artist") String idArtist 
+			) {
+		if(Integer.parseInt(idArtist) != 0) {
+			// Film editedFilm= tm.findById(Integer.parseInt(idFilm));
+			// model.addAttribute("film",editedFilm);
+		}
+		return "ArtistEdit";
+	}
+	
+	@RequestMapping(path = "/artist/list", method = RequestMethod.GET)
+	public String listArtist(ModelMap model) {
+			List<Film> films = fm.findAllFilms();
+			model.addAttribute("films", films);
+			return "FilmList";
+		}
 
 	/* Yo's Workshop */
 	

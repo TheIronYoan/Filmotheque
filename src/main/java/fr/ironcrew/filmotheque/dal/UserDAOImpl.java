@@ -11,6 +11,7 @@ import fr.ironcrew.filmotheque.bo.User;
 
 @Component
 public class UserDAOImpl implements UserDAO{
+	
 	@PersistenceContext
 	private EntityManager em;
 	
