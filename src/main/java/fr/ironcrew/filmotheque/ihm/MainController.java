@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import fr.ironcrew.filmotheque.bll.FilmManager;
 import fr.ironcrew.filmotheque.bll.UserManager;
@@ -60,7 +61,7 @@ public class MainController {
 	
 
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public String connexion(@RequestParam(name="username") String username
+	public RedirectView connexion(@RequestParam(name="username") String username
 							,@RequestParam(name="password") String password
 							,ModelMap model) {
 		
@@ -71,22 +72,24 @@ public class MainController {
 					model.addAttribute("userLogged", testedUser);
 				}
 				else {
-					return "Welcome";
+					return new RedirectView("login");
 				}
 	
-				return "FilmList";
+				return new RedirectView("film/list");
 			}
 			catch(Exception e) {
 				
 				System.out.println("pas d'utilisateur");
 			}
-			return "FilmList";
+			return new RedirectView("film/list");
 		}
+	
+	
 	
 	@RequestMapping(path = "/logout", method = RequestMethod.GET)
 	public String byebye() {
 		
-		System.out.println("Je viens de me deconnecter");
+			System.out.println("Je viens de me deconnecter");
 			return "Welcome";
 		}
 	
