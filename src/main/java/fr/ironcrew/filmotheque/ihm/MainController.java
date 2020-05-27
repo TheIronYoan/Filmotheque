@@ -45,7 +45,16 @@ public class MainController {
 		}
 	
 	@RequestMapping(path = "/film/list", method = RequestMethod.GET)
-	public String listFilm() {
+	public String listFilm(ModelMap model) {
+			List<Film> films = fm.findAllFilms();
+			model.addAttribute("films", films);
+			return "FilmList";
+		}
+	
+	@RequestMapping(path = "/film/list", method = RequestMethod.POST)
+	public String listFilmViaPost(ModelMap model) {
+			List<Film> films = fm.findAllFilms();
+			model.addAttribute("films", films);
 			return "FilmList";
 		}
 	

@@ -16,16 +16,43 @@
 		<div class="container myMainContainer">
 
 	<h1 class="text-center">Films</h1>
-	
 	<table class="table">
 		 	 <tbody>
+		 	 <tr>
+		 	 <td>Id</td>
+		 	 <td>Nom</td>
+		 	 <td>Année</td>
+		 	 <td>Catégorie</td>
+		 	 <td>Réalisateur</td>
+		 	 <td>Acteur principal</td>
+		 	 <td></td>
+		 	 <td></td>
+		 	 </tr>
 				<c:forEach items="${films}" var="film" >
 				    <tr>
-				      <th scope="row" class="text-center">${todo.description}</th>
-				      <td><a href="<%=request.getServletContext().getContextPath() %>/app/edit?film=${film.id}"> Editer</a></td>
+				      <td>${film.id}</td>
+				      
+				      <td>${film.name}</td>
+				      
+				      <td>${film.releaseDate}</td>
+				      
+				      <td><c:if test="${not empty film.category}">
+				      	${film.category}
+				      </c:if></td>
+				      
+				      <td><c:if test="${not empty film.director}">
+				      	${film.director}
+				      </c:if></td>
+				      
+				      <td><c:if test="${not empty  film.actors}">
+				      	${film.actors[0]}
+				      </c:if></td>
+				    
+				    <td><a href="<%=request.getServletContext().getContextPath() %>/app/edit?film=${film.id}"> Editer</a></td>
 				      <td><a href="<%=request.getServletContext().getContextPath() %>/app/delete?film=${film.id}"> Supprimer</a></td>
-				    </tr>
+			    	</tr>
 			    </c:forEach>
+				      
 			  </tbody>
 			</table>
 		</div>
