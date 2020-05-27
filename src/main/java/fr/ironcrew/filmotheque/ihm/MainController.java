@@ -141,7 +141,8 @@ public class MainController {
 	
 	@RequestMapping(path = "/artist/add", method = RequestMethod.POST)
 	public String addArtist(@RequestParam String action, @RequestParam String firstname,@RequestParam String name,
-			@RequestParam boolean director,@RequestParam boolean actor,@RequestParam String birth,@RequestParam String nation) throws ParseException {
+			@RequestParam(value = "false", required=false) boolean director,@RequestParam(value = "false", required=false) boolean actor,
+			@RequestParam String birth,@RequestParam String nation) throws ParseException {
 		if ("enregistrer".equals(action)) {
 			Artist art= new Artist();
 			art.setFirstname(firstname);
