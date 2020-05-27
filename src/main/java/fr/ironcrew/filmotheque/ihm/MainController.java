@@ -57,13 +57,13 @@ public class MainController {
 	
 	@RequestMapping(path = "/init", method = RequestMethod.GET)
 	public String initalize() {
-		Film film1=new Film(2, "Sengoku Gensokyo 4 - The Grand War", 2222, null, null, null);
+		Film film1=new Film(1, "Sengoku Gensokyo 4 - The Grand War", 2222, null, null, null);
 		fm.enregistrerFilm(film1);
 		Film film2=new Film(2, "Retour vers le futur ", 1985 , null, null, null);
 		fm.enregistrerFilm(film2);
-		Film film3=new Film(2, "Harry Potter a l'ecole des sorciers ", 2001, null, null, null);
+		Film film3=new Film(3, "Harry Potter a l'ecole des sorciers ", 2001, null, null, null);
 		fm.enregistrerFilm(film3);
-		Film film4=new Film(2, "Star Trek ", 2009, null, null, null);
+		Film film4=new Film(4, "Star Trek ", 2009, null, null, null);
 		fm.enregistrerFilm(film4);
 			
 			return "Welcome";

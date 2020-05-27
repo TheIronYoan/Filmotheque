@@ -52,8 +52,8 @@
 				      	${film.actors[0]}
 				      </c:if></td>
 				    
-				    <td><a href="<%=request.getServletContext().getContextPath() %>/app/edit?film=${film.id}"> Editer</a></td>
-				      <td><a href="<%=request.getServletContext().getContextPath() %>/app/delete?film=${film.id}"> Supprimer</a></td>
+				    <td><a href="<%=request.getServletContext().getContextPath() %>/app/film/edit?id=${film.id}"> Editer</a></td>
+				      <td><a href="<%=request.getServletContext().getContextPath() %>/app/film/delete?id=${film.id}"> Supprimer</a></td>
 			    	</tr>
 
 			    </c:forEach>
