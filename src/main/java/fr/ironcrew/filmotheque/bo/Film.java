@@ -41,7 +41,7 @@ public class Film {
     @JoinColumn(name="director_id", nullable=true)
 	private Artist director;
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany
     @JoinTable(
         name = "film_artist", 
         joinColumns = { @JoinColumn(name = "film_id") }, 
