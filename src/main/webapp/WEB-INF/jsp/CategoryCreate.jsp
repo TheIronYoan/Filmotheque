@@ -6,12 +6,16 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Créer une Categorie</title>
+<title>Créer un Artiste</title>
 </head>
 <body>
-<%@ include file="./fragments/header.jsp"%>
-
-
+<%@ include file="/WEB-INF/jsp/fragments/header.jsp"%>
+<h1>Nouvel Artiste</h1>
+	<form action="add" method="POST"  >
+		<label>Type de Catégorie: </label><input type="text" name="cat" /><br>
+		<button type="submit" name="action" value="enregistrer" >Enregistrer</button>
+		<button type="submit" name="action" value="annuler"  >Annuler</button>
+	</form>	
 
 <%@ include file="./fragments/footer.jsp"%>
 </body>

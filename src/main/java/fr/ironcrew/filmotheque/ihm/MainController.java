@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import fr.ironcrew.filmotheque.bll.FilmManager;
 import fr.ironcrew.filmotheque.bll.UserManager;
 import fr.ironcrew.filmotheque.bll.ArtistManager;
-
+import fr.ironcrew.filmotheque.bll.CategoryManager;
 import fr.ironcrew.filmotheque.bo.Artist;
 import fr.ironcrew.filmotheque.bo.Category;
 
@@ -48,6 +48,9 @@ public class MainController {
 	
 	@Autowired
 	private ArtistManager am;
+
+	@Autowired
+	private CategoryManager cm;
 
 		/*
 	    * Add user in model attribute
@@ -155,6 +158,21 @@ public class MainController {
 			art.setBirth(birthDate);
 			art.setNationality(nation);
 			am.enregistrerArtist(art);
+		}
+			return "FilmList";
+		}
+	
+	@RequestMapping(path = "/cat/add", method = RequestMethod.GET)
+	public String addCategoryPage() {
+		return "CategoryCreate";
+	}
+	
+	@RequestMapping(path = "/cat/add", method = RequestMethod.POST)
+	public String addCategory(@RequestParam String action, @RequestParam String cat)  {
+		if ("enregistrer".equals(action)) {
+			Category categorie= new Category();
+			categorie.setName(cat);
+			cm.enregistrerCategory(categorie);
 		}
 			return "FilmList";
 		}
