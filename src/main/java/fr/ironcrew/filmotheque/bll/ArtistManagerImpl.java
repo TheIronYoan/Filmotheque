@@ -25,7 +25,7 @@ public class ArtistManagerImpl implements ArtistManager{
 	
 	
 
-	public Artist findById(  long id) throws ArtistNonTrouveException {
+	public Artist findById(  int id) throws ArtistNonTrouveException {
 		Artist art = dao.findById(id);
 		if(art==null) {
 			throw new ArtistNonTrouveException();
@@ -54,6 +54,22 @@ public class ArtistManagerImpl implements ArtistManager{
 	@Override
 	public List<Artist> findAllArtist() {
 		return dao.findAll();
+	}
+
+
+
+	@Override
+	public List<Artist> findAllActors() {
+		// TODO Auto-generated method stub
+		return dao.findAllActors();
+	}
+
+
+
+	@Override
+	public List<Artist> findAllDirectors() {
+		// TODO Auto-generated method stub
+		return dao.findAllDirectors();
 	}
 
 

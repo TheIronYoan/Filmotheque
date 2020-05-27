@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -14,6 +15,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,10 @@ import org.springframework.web.servlet.view.RedirectView;
 import fr.ironcrew.filmotheque.bll.FilmManager;
 import fr.ironcrew.filmotheque.bll.UserManager;
 import fr.ironcrew.filmotheque.bll.ArtistManager;
+import fr.ironcrew.filmotheque.bll.ArtistNonTrouveException;
 import fr.ironcrew.filmotheque.bll.CategoryManager;
+import fr.ironcrew.filmotheque.bll.CategoryNonTrouveException;
+
 import fr.ironcrew.filmotheque.bo.Artist;
 import fr.ironcrew.filmotheque.bo.Category;
 
@@ -46,7 +51,7 @@ public class MainController {
 	
 	@Autowired
 	private FilmManager fm;
-	
+
 	@Autowired
 	private ArtistManager am;
 
@@ -139,8 +144,10 @@ public class MainController {
 	
 	@RequestMapping(path = "/artist/add", method = RequestMethod.POST)
 	public String addArtist(@RequestParam String action, @RequestParam String firstname,@RequestParam String name,
-			@RequestParam(value = "false", required=false) boolean director,@RequestParam(value = "false", required=false) boolean actor,
+
+			@RequestParam(required=false) boolean director,@RequestParam(required=false) boolean actor,
 			@RequestParam String birth,@RequestParam String nation) throws ParseException {
+
 		if ("enregistrer".equals(action)) {
 			Artist art= new Artist();
 			art.setFirstname(firstname);
@@ -172,6 +179,56 @@ public class MainController {
 			return "FilmList";
 		}
 	
+	@RequestMapping(path = "/film/add", method = RequestMethod.GET)
+	public String addFilmPage(ModelMap model) {
+		List<Category> cats=cm.findAllCategory();
+		List<Artist> acts=am.findAllActors();
+		System.out.println(cats.size());
+		List<Artist> dirs=am.findAllDirectors();
+		model.addAttribute("actors", acts);
+		model.addAttribute("directors", dirs);
+		model.addAttribute("cats", cats);
+		model.addAttribute("numAct", 1);
+		return "FilmCreate";
+	}
+	
+	@RequestMapping(path = "/film/add", method = RequestMethod.POST)
+	public String addFilm(@RequestParam String action, @RequestParam String name,@RequestParam int release,
+			@RequestParam int cat,@RequestParam int director,
+			@RequestParam(value="actors[]") int[] actors,
+			@RequestParam int numAct,ModelMap model) throws ParseException, CategoryNonTrouveException, ArtistNonTrouveException {
+		if ("enregistrer".equals(action)) {
+			Film film= new Film();
+			film.setName(name);
+			film.setReleaseDate(release);
+			Category category=cm.findById(cat);
+			film.setCategory(category);
+			Artist usedDirector=am.findById(director);
+			film.setDirector(usedDirector);
+			ArrayList<Artist> usedActors= new ArrayList<Artist>();
+			for(int actor : actors) {
+				usedActors.add(am.findById(actor));
+			}
+			System.out.println("number="+usedActors.size());
+			
+			film.setActors(usedActors);
+			fm.enregistrerFilm(film);
+		}
+		
+		
+		if ("plus".equals(action)) {
+			List<Category> cats=cm.findAllCategory();
+			List<Artist> acts=am.findAllActors();
+			System.out.println(cats.size());
+			List<Artist> dirs=am.findAllDirectors();
+			model.addAttribute("actors", acts);
+			model.addAttribute("directors", dirs);
+			model.addAttribute("cats", cats);
+			model.addAttribute("numAct", numAct+1);
+		}
+			return "FilmList";
+		}
+	
 	@RequestMapping(path = "/artist/edit", method = RequestMethod.GET)
 	public String editArtist(
 			@RequestParam(defaultValue = "0",name="artist") String idArtist 
@@ -189,7 +246,6 @@ public class MainController {
 			model.addAttribute("films", films);
 			return "FilmList";
 		}
-	
 
 	/* Yo's Workshop */
 	

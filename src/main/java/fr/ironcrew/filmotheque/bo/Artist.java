@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,7 +51,7 @@ public class Artist {
 	@Column(name="nationality")
 	private String nationality;
 
-	@ManyToMany(mappedBy = "actors")
+	@ManyToMany(mappedBy = "actors", cascade = { CascadeType.ALL })
 	private List<Film> filmsActor;
 
 	public Artist() {

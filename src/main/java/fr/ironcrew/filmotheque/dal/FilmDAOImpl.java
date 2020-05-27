@@ -44,12 +44,12 @@ public class FilmDAOImpl implements FilmDAO{
 	}
 
 	@Override
-	public Film findById(long id) {
+	public Film findById(int id) {
 		return em.find(Film.class, id);
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(int id) {
 		Film film = findById(id);
 		delete(film);
 		

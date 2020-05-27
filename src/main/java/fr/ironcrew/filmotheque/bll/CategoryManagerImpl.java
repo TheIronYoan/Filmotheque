@@ -25,7 +25,7 @@ public class CategoryManagerImpl implements CategoryManager{
 	
 	
 
-	public Category findById(  long id) throws CategoryNonTrouveException {
+	public Category findById(  int id) throws CategoryNonTrouveException {
 		Category art = dao.findById(id);
 		if(art==null) {
 			throw new CategoryNonTrouveException();

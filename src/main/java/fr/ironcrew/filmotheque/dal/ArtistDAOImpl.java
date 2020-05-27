@@ -44,15 +44,25 @@ public class ArtistDAOImpl implements ArtistDAO{
 	}
 
 	@Override
-	public Artist findById(long id) {
+	public Artist findById(int id) {
 		return em.find(Artist.class, id);
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(int id) {
 		Artist art = findById(id);
 		delete(art);
 		
+	}
+
+	@Override
+	public List<Artist> findAllActors() {
+		return em.createQuery("select f from Artist f where f.actor=1", Artist.class).getResultList();
+	}
+
+	@Override
+	public List<Artist> findAllDirectors() {
+		return em.createQuery("select f from Artist f where f.director=1", Artist.class).getResultList();
 	}
 
 }

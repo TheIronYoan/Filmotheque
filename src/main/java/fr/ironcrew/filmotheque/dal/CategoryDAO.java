@@ -12,9 +12,9 @@ public interface CategoryDAO {
 
 	public void delete(Category art);
 
-	public void delete(Long id);
+	public void delete(int id);
 	
-	public Category findById(long id);
+	public Category findById(int id);
 	
 	public List<Category> findAll();
 }

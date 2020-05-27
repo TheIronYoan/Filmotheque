@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import fr.ironcrew.filmotheque.bo.Film;
 
 public interface FilmManager {
-	public Film findById(  long id) throws FilmNonTrouveException ;
+	public Film findById(  int id) throws FilmNonTrouveException ;
 
 	public void enregistrerFilm( Film film)  ;
 
