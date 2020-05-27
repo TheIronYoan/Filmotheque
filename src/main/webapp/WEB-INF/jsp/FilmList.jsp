@@ -17,8 +17,7 @@
 
 	<h1 class="text-center">Films </h1>
 	
-	<h2>Utilisateur Loggué : ${userLogged.username}</h2>
-
+	
 	<table class="table">
 		 	 <tbody>
 		 	 <tr>

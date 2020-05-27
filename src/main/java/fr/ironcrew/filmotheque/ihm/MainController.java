@@ -52,15 +52,7 @@ public class MainController {
 	@Autowired
 	private CategoryManager cm;
 
-		/*
-	    * Add user in model attribute
-	    */
-	 //  @ModelAttribute("userLogged")
-	 //  public User user() {
-	 //     return new User();
-	 //  }
-
-	
+		
 	@RequestMapping(path = "/login", method = RequestMethod.GET)
 	public String welcome() {
 			return "Welcome";
@@ -174,6 +166,24 @@ public class MainController {
 			categorie.setName(cat);
 			cm.enregistrerCategory(categorie);
 		}
+			return "FilmList";
+		}
+	
+	@RequestMapping(path = "/artist/edit", method = RequestMethod.GET)
+	public String editArtist(
+			@RequestParam(defaultValue = "0",name="artist") String idArtist 
+			) {
+		if(Integer.parseInt(idArtist) != 0) {
+			// Film editedFilm= tm.findById(Integer.parseInt(idFilm));
+			// model.addAttribute("film",editedFilm);
+		}
+		return "ArtistEdit";
+	}
+	
+	@RequestMapping(path = "/artist/list", method = RequestMethod.GET)
+	public String listArtist(ModelMap model) {
+			List<Film> films = fm.findAllFilms();
+			model.addAttribute("films", films);
 			return "FilmList";
 		}
 	
