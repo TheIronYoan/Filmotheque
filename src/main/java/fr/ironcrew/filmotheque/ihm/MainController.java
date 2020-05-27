@@ -1,7 +1,15 @@
 package fr.ironcrew.filmotheque.ihm;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +27,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.ironcrew.filmotheque.bll.FilmManager;
 import fr.ironcrew.filmotheque.bll.UserManager;
+import fr.ironcrew.filmotheque.bll.ArtistManager;
 
 import fr.ironcrew.filmotheque.bo.Artist;
 import fr.ironcrew.filmotheque.bo.Category;
@@ -36,6 +45,9 @@ public class MainController {
 	
 	@Autowired
 	private FilmManager fm;
+	
+	@Autowired
+	private ArtistManager am;
 
 		/*
 	    * Add user in model attribute
@@ -121,6 +133,31 @@ public class MainController {
 			}
 			return "FilmEdit";
 		}
+	
+	@RequestMapping(path = "/artist/add", method = RequestMethod.GET)
+	public String addArtistPage() {
+		return "ArtistCreate";
+	}
+	
+	@RequestMapping(path = "/artist/add", method = RequestMethod.POST)
+	public String addArtist(@RequestParam String action, @RequestParam String firstname,@RequestParam String name,
+			@RequestParam boolean director,@RequestParam boolean actor,@RequestParam String birth,@RequestParam String nation) throws ParseException {
+		if ("enregistrer".equals(action)) {
+			Artist art= new Artist();
+			art.setFirstname(firstname);
+			art.setName(name);
+			art.setDirector(director);
+			art.setActor(actor);
+			System.out.println(birth);
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			Date birthDate=format.parse(birth);
+			art.setBirth(birthDate);
+			art.setNationality(nation);
+			am.enregistrerArtist(art);
+		}
+			return "FilmList";
+		}
+	
 
 	/* Yo's Workshop */
 	

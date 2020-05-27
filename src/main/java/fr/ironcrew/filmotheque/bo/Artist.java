@@ -2,6 +2,7 @@ package fr.ironcrew.filmotheque.bo;
 
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
@@ -40,8 +43,8 @@ public class Artist {
 	private boolean actor;
 
 
-	@Column(name="birth")
-	private LocalDate birth;
+	@Column(name="birth", columnDefinition="date")
+	private Date birth;
 
 
 	@Column(name="nationality")
@@ -57,7 +60,7 @@ public class Artist {
 
 	
 
-	public Artist(int id, String firstname, String name, boolean director, boolean actor, LocalDate birth,
+	public Artist(int id, String firstname, String name, boolean director, boolean actor, Date birth,
 			String nationality, List<Film> filmsActor) {
 		super();
 		this.id = id;
@@ -123,12 +126,12 @@ public class Artist {
 	}
 
 
-	public LocalDate getBirth() {
+	public Date getBirth() {
 		return birth;
 	}
 
 
-	public void setBirth(LocalDate birth) {
+	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
 
