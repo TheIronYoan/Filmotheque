@@ -39,47 +39,38 @@ import fr.ironcrew.filmotheque.bo.User;
 
 @RestController
 @SessionAttributes("userLogged")
-public class MainController {
+public class CatController {
   
-	@Autowired
-	private UserManager um;
-	
-	@Autowired
-	private FilmManager fm;
-	
-	@Autowired
-	private ArtistManager am;
 
 	@Autowired
 	private CategoryManager cm;
 
+	@RequestMapping(path = "/category/list", method = RequestMethod.GET)
+	public String listCategory(ModelMap model)  {
+		List<Category> categories = cm.findAllCategory();
+		model.addAttribute("categories", categories);
+		return "CategoryList";
+	}
 	
+
+	@RequestMapping(path = "/category/add", method = RequestMethod.GET)
+	public String addCategoryPage() {
+		return "CategoryCreate";
+	}
 	
-	@RequestMapping(path = "/init", method = RequestMethod.GET)
-	public String initalize() {
-		User user1= new User(1, "Bruno ", "HUDBERT", "bhudbert", "bruno.hudbert2019@campus-eni.fr", "e10adc3949ba59abbe56e057f20f883e",true, true);
-		um.saveUser(user1);
-		User user2= new User(2, "poweruser ", "ENI", "poweruser", "poweruser@campus-eni.fr", "e10adc3949ba59abbe56e057f20f883e", true,false);
-		um.saveUser(user2);
-		User user3= new User(3, "user ", "ENI", "user", "user@campus-eni.fr", "e10adc3949ba59abbe56e057f20f883e",false, false);
-		um.saveUser(user3);
-		User user4= new User(4, "Yoan ", "COTTREL", "ycottrel", "yoan.cottrel2019@campus-eni.fr", "e10adc3949ba59abbe56e057f20f883e",true, true);
-		um.saveUser(user4);
-	
-		
-		Film film1=new Film(1, "Sengoku Gensokyo 4 - The Grand War", 2222, null, null, null);
-		fm.enregistrerFilm(film1);
-		Film film2=new Film(2, "Retour vers le futur ", 1985 , null, null, null);
-		fm.enregistrerFilm(film2);
-		Film film3=new Film(3, "Harry Potter a l'ecole des sorciers ", 2001, null, null, null);
-		fm.enregistrerFilm(film3);
-		Film film4=new Film(4, "Star Trek ", 2009, null, null, null);
-		fm.enregistrerFilm(film4);
-			
-			return "Welcome";
+	@RequestMapping(path = "/category/add", method = RequestMethod.POST)
+	public String addCategory(@RequestParam String action, @RequestParam String cat)  {
+		if ("enregistrer".equals(action)) {
+			Category categorie= new Category();
+			categorie.setName(cat);
+			cm.enregistrerCategory(categorie);
 		}
+			return "FilmList";
+		}
+	@RequestMapping(path = "/category/delete", method = RequestMethod.GET)
+	public String deleteCategory() {
+		return "CategoryCreate";
+	}
 	
-
-
 }
 

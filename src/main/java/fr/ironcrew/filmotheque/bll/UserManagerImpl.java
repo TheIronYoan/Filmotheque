@@ -6,9 +6,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.ironcrew.filmotheque.bo.Film;
 import fr.ironcrew.filmotheque.bo.User;
 import fr.ironcrew.filmotheque.dal.UserDAO;
 
@@ -45,6 +48,14 @@ public class UserManagerImpl implements UserManager{
 		return testedUser;
 	}
 	
+	@Transactional
+	public void saveUser( User user)  {
+		if(user.getId()==0) {
+			dao.add(user);
+		}else {
+			dao.update(user);
+		}
+	}
 	
 	public String passwordHash(String password){
        	String passwordToHash = password ;

@@ -12,4 +12,6 @@ public interface UserManager {
 	public User findById(long id);
 	
 	public User authentification(String username,String password);
+	
+	public void saveUser( User user);
 }

@@ -3,7 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<nav class="navbar navbar-expand-lg navbar-dark ironnavbar"  style="background: linear-gradient(#193a53, #192945)">
+<nav class="navbar navbar-expand-lg navbar-dark "  style="background: linear-gradient(#193a53, #192945)">
   <div class="row w-100">
 	  	<div class="col-lg-2">
 	  		&nbsp;&nbsp;&nbsp;&nbsp;
@@ -16,7 +16,7 @@
 				 <a class="btn btn-light btn-outline-primary " href="<%=request.getServletContext().getContextPath() %>/app/artist/list">
 					Artistes
 				</a>  
-				<a class="btn btn-light btn-outline-primary " href="<%=request.getServletContext().getContextPath() %>//app/category/list">
+				<a class="btn btn-light btn-outline-primary " href="<%=request.getServletContext().getContextPath() %>/app/category/list">
 					Categories
 				</a>
 	    </div>

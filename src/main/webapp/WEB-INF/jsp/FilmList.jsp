@@ -9,60 +9,76 @@
 
 	<%@ include file="/WEB-INF/jsp/fragments/header.jsp"%>
 	
-			<br><br>
+			<br/><br/>
 	<main role="main">
 
-		<div class="container myMainContainer">
-
-
-	<h1 class="text-center">Films </h1>
-	
-	<h2>${userLogged.username}</h2>
-
-	<table class="table">
-		 	 <tbody>
-		 	 <tr>
-		 	 <td>Id</td>
-		 	 <td>Nom</td>
-		 	 <td>Année</td>
-		 	 <td>Catégorie</td>
-		 	 <td>Réalisateur</td>
-		 	 <td>Acteur principal</td>
-		 	 <td></td>
-		 	 <td></td>
-		 	 </tr>
-				<c:forEach items="${films}" var="film" >
+		<div class=" myMainContainer">
+			<div class="row">
+				<div class="col-lg-1">
+				</div>
+				
+				<div class="col-lg-10">
+				<div class="row">
+						<div class="col-lg-6"  style="padding-left:40px;">
+						
+									<h1 class="text-center float-left">Films </h1>
+						</div>
+						<div class="col-lg-6"  style="padding-right:70px;">
+						<a class="btn btn-success float-right" style="padding-right:60px;padding-left:60px;" href="<%=request.getServletContext().getContextPath() %>/app/film/edit"> Ajouter Film</a>
+						</div>
+						
+				</div>
+				<table class="table">
+				  <thead class="thead-dark" style="background: linear-gradient(#193a53, #192945);color:#ffffff;font-weight:bold">
 				    <tr>
-
-				      <td>${film.id}</td>
-				      
-				      <td>${film.name}</td>
-				      
-				      <td>${film.releaseDate}</td>
-				      
-				      <td><c:if test="${not empty film.category}">
-				      	${film.category}
-				      </c:if></td>
-				      
-				      <td><c:if test="${not empty film.director}">
-				      	${film.director}
-				      </c:if></td>
-				      
-				      <td><c:if test="${not empty  film.actors}">
-				      	${film.actors[0]}
-				      </c:if></td>
-				    
-				    <td><a href="<%=request.getServletContext().getContextPath() %>/app/film/edit?id=${film.id}"> Editer</a></td>
-				      <td><a href="<%=request.getServletContext().getContextPath() %>/app/film/delete?id=${film.id}"> Supprimer</a></td>
-			    	</tr>
-
-			    </c:forEach>
-				      
-			  </tbody>
-			</table>
+							 	 <td>Id</td>
+							 	 <td>Nom</td>
+							 	 <td>Année</td>
+							 	 <td>Catégorie</td>
+							 	 <td class=" text-center">Réalisateur</td>
+							 	 <td class=" text-center w-25">Acteur principal</td>
+							 	 <td></td>
+							 	 <td></td>
+						 	  </tr>
+							  </thead>
+							  <tbody>
+							<c:forEach items="${films}" var="film" >
+							    <tr>
+			
+							      <td>${film.id}</td>
+							      
+							      <td>${film.name}</td>
+							      
+							      <td>${film.releaseDate}</td>
+							      
+							      <td><c:if test="${not empty film.category}">
+							      	${film.category}
+							      </c:if></td>
+							      
+							      <td><c:if test="${not empty film.director}">
+							      	${film.director}
+							      </c:if></td>
+							      
+							      <td class=" text-center w-25"><c:if test="${not empty  film.actors}">
+							      	${film.actors[0]}
+							      </c:if></td>
+							    
+							 	<td class="text-center"><a class="btn btn-secondary"  href="<%=request.getServletContext().getContextPath() %>/app/film/edit?id=${film.id}"> Editer</a></td>
+							     	<td class="text-center"><a class="btn btn-danger"  href="<%=request.getServletContext().getContextPath() %>/app/film/delete?id=${film.id}"> Supprimer</a></td>
+						    	</tr>
+			
+						    </c:forEach>
+							      
+						  </tbody>
+						</table>
+					</div>
+				<div class="col-lg-1">	
+				</div>
+				
+				
+		</div>
 		</div>
 	</main>
-		
 		
 	<%@ include file="./fragments/footer.jsp"%>
 </body>

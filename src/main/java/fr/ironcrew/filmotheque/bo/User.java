@@ -20,7 +20,7 @@ public class User {
 	
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 	
 	@Column(name="firstname")
 	private String firstname;
@@ -52,7 +52,7 @@ public class User {
 	
 	
 	
-	public User(Long id, String firstname, String name, String username, String email, String password,
+	public User(int id, String firstname, String name, String username, String email, String password,
 			Boolean poweruser, Boolean administrator) {
 		super();
 		this.id = id;
@@ -67,13 +67,13 @@ public class User {
 
 
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
 
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
