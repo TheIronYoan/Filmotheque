@@ -12,12 +12,12 @@
 <%@ include file="/WEB-INF/jsp/fragments/header.jsp"%>
 <h1>Nouvel Artiste</h1>
 	<form action="add" method="POST"  >
-		<label>Prenom: </label><input type="text" name="firstname" /><br>
-		<label>Nom: </label><input type="text" name="name" /><br>
-		<label>Realisateur: </label><input type="checkbox" name="director" />
+		<label>Prenom: </label><input type="text" name="firstname" required=true/><br>
+		<label>Nom: </label><input type="text" name="name"  required=true/><br>
+		<label>Realisateur: </label><input type="checkbox" name="director"  required=true/>
 		<label>Acteur: </label><input type="checkbox" name="actor" /><br>
-		<label>Date de naissance: </label><input type="date" name="birth" /><br>
-		<label>Nationalité: </label><input type="text" name="nation" /><br><br>
+		<label>Date de naissance: </label><input type="date" name="birth"  required=true/><br>
+		<label>Nationalité: </label><input type="text" name="nation"  required=true/><br><br>
 		<button type="submit" name="action" value="enregistrer" >Enregistrer</button>
 		<button type="submit" name="action" value="annuler"  >Annuler</button>
 	</form>	

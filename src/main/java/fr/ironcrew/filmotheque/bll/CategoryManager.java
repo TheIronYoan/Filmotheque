@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import fr.ironcrew.filmotheque.bo.Category;
 
 public interface CategoryManager {
-	public Category findById(  long id) throws CategoryNonTrouveException ;
+	public Category findById(  int id) throws CategoryNonTrouveException ;
 
 	public void enregistrerCategory( Category film)  ;
 

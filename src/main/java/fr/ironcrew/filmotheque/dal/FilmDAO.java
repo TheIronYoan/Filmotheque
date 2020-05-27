@@ -12,9 +12,9 @@ public interface FilmDAO {
 
 	public void delete(Film film);
 
-	public void delete(Long id);
+	public void delete(int id);
 	
-	public Film findById(long id);
+	public Film findById(int id);
 	
 	public List<Film> findAll();
 }

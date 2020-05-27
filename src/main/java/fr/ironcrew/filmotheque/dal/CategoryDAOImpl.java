@@ -40,16 +40,16 @@ public class CategoryDAOImpl implements CategoryDAO{
 
 	@Override
 	public List<Category> findAll() {
-		return em.createQuery("select f from Artist f", Category.class).getResultList();
+		return em.createQuery("select f from Category f", Category.class).getResultList();
 	}
 
 	@Override
-	public Category findById(long id) {
+	public Category findById(int id) {
 		return em.find(Category.class, id);
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(int id) {
 		Category art = findById(id);
 		delete(art);
 		

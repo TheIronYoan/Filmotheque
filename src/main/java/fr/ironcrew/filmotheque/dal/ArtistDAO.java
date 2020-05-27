@@ -12,9 +12,13 @@ public interface ArtistDAO {
 
 	public void delete(Artist art);
 
-	public void delete(Long id);
+	public void delete(int id);
 	
-	public Artist findById(long id);
+	public Artist findById(int id);
 	
 	public List<Artist> findAll();
+	
+	public List<Artist> findAllActors();
+	
+	public List<Artist> findAllDirectors();
 }
