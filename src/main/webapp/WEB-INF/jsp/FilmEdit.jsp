@@ -10,7 +10,7 @@
 	<br><br>
 	<main role="main">
 		<div class="container myMainContainer">
-		<h1 class="text-center">Edition 
+		<h1 class="text-center">Edition  ${userLogged.username}
 			<c:if test="${film.id==0}">
 				Nouvelle
 			 </c:if>

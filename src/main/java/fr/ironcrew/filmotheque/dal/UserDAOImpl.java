@@ -50,9 +50,14 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public void delete(Long id) {
-		User film = findById(id);
-		delete(film);
+		User user = findById(id);
+		delete(user);
 		
+	}
+
+	@Override
+	public User findByUsername(String username) {
+		return em.find(User.class, username);
 	}
 
 }

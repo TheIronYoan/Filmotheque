@@ -8,16 +8,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name="users")
 @Component(value="user")
+@Scope("session")
 public class User {
 
-	@Id
-    @Column(name="id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+	
+	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="firstname")
@@ -26,6 +28,7 @@ public class User {
 	@Column(name="name")
 	private String name;
 	
+	@Id
 	@Column(name="username")
 	private String username;
 	

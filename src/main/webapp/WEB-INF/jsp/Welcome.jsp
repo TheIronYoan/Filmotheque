@@ -23,10 +23,10 @@
 					<h1 class="h3 mb-3 font-weight-normal">&nbsp;&nbsp;Identifiez vous</h1>
 
 					<label for="inputID" class="sr-only">Identifiant </label> 
-					<input type="name" id="inputName" class="form-control" 	placeholder="identifiant" name="pseudo" required autofocus>
+					<input type="name" id="inputName" class="form-control"  name="username" placeholder="identifiant" required autofocus>
 					<br />
 					<label for="inputPassword" class="sr-only">Mot de passe</label> 
-					<input type="password" id="inputPassword" class="form-control" name="mdp" placeholder="Mot de passe" required> <br /> 
+					<input type="password" id="inputPassword" class="form-control" name="password" placeholder="Mot de passe" required> <br /> 
 						
 
 					<button class="btn btn-lg btn-block btn-secondary" type="submit">Connexion</button> 

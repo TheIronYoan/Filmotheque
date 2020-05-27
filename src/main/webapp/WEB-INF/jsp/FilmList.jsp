@@ -9,21 +9,22 @@
 
 	<%@ include file="/WEB-INF/jsp/fragments/header.jsp"%>
 	
-	
-		<br><br>
+			<br><br>
 	<main role="main">
 
 		<div class="container myMainContainer">
 
-	<h1 class="text-center">Films</h1>
+	<h1 class="text-center">Films ${userLogged.username}</h1>
 	
 	<table class="table">
 		 	 <tbody>
 				<c:forEach items="${films}" var="film" >
 				    <tr>
-				      <th scope="row" class="text-center">${todo.description}</th>
+				      <th scope="row" class="text-center">${film.description}</th>
+				      
 				      <td><a href="<%=request.getServletContext().getContextPath() %>/app/edit?film=${film.id}"> Editer</a></td>
 				      <td><a href="<%=request.getServletContext().getContextPath() %>/app/delete?film=${film.id}"> Supprimer</a></td>
+				   
 				    </tr>
 			    </c:forEach>
 			  </tbody>
