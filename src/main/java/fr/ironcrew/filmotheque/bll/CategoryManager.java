@@ -10,9 +10,9 @@ import fr.ironcrew.filmotheque.bo.Category;
 public interface CategoryManager {
 	public Category findById(  int id) throws CategoryNonTrouveException ;
 
-	public void enregistrerCategory( Category film)  ;
+	public void saveCategory( Category film)  ;
 
-	public void supprimerCategory( Category id) throws CategoryNonTrouveException ;
+	public void deleteCategory( Category id) throws CategoryNonTrouveException ;
 	
 	public List<Category> findAllCategory();
 }

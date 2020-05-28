@@ -67,11 +67,11 @@ public class MainController {
 		um.saveUser(user4);
 		
 		Category cat1=new Category(1,"Comedie",null);
-		cm.enregistrerCategory(cat1);
+		cm.saveCategory(cat1);
 		Category cat2=new Category(2,"Fantastique",null);
-		cm.enregistrerCategory(cat2);
+		cm.saveCategory(cat2);
 		Category cat3=new Category(3,"Drame",null);
-		cm.enregistrerCategory(cat3);
+		cm.saveCategory(cat3);
 		
 		
 		Artist artist1= new Artist(1,"Daniel","RADCLIFE",false,true,null,"Anglais",null);

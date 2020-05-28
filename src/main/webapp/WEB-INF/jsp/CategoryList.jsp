@@ -48,8 +48,8 @@
 						      
 						   
 						    
-						    	<td class="text-center"><a class="btn btn-secondary" href="<%=request.getServletContext().getContextPath() %>/app/category/edit?id=${film.id}"> Editer</a></td>
-						    	<td class="text-center"><a class="btn btn-danger" href="<%=request.getServletContext().getContextPath() %>/app/category/delete?id=${film.id}"> Supprimer</a></td>
+						    	<td class="text-center"><a class="btn btn-secondary" href="<%=request.getServletContext().getContextPath() %>/app/category/edit?id=${category.id}"> Editer</a></td>
+						    	<td class="text-center"><a class="btn btn-danger" href="<%=request.getServletContext().getContextPath() %>/app/category/delete?id=${category.id}"> Supprimer</a></td>
 					    	</tr>
 		
 					    </c:forEach>

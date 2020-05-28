@@ -102,6 +102,8 @@ public class ArtistController {
 			return new RedirectView("/Filmotheque/app/artist/list");
 		}
 	
+	
+	
 	@RequestMapping(path = "/artist/edit", method = RequestMethod.GET)
 	public String editArtist(ModelMap model,
 			@RequestParam(defaultValue = "0",name="id") int id 			
@@ -137,7 +139,6 @@ public class ArtistController {
 	public RedirectView deleteArtist(
 					@RequestParam(defaultValue = "0",name="id") int id,
 					ModelMap model) throws ArtistNonTrouveException {
-			System.out.println("j'appelle bien le delete en POST");
 			Artist artist =am.findById(id);
 			am.deleteArtist(artist);
 			

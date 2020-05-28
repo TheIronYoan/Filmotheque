@@ -18,7 +18,7 @@
 				<div class="col-lg-6">	
 				<br/><br/>
 					<h1>Edition Categorie</h1>
-						<form action="add" method="POST"  >
+						<form action="edit" method="POST"  >
 						<input type="hidden" name="id" value="
 							<c:if test="${!empty category.id}">
 											${category.id}
@@ -28,7 +28,7 @@
 							</c:if>
 						"/>
 						<label>Type de Catégorie: </label>
-						<input type="text" name="cat" value="${category.name}"/><br>
+						<input type="text" name="cat" value="${category.name}"/><br/>
 						<br/>
 						<button type="submit" name="action" value="enregistrer" >Enregistrer</button>
 						<button type="submit" name="action" value="annuler"  >Annuler</button>

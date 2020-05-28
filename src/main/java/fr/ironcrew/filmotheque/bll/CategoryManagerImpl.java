@@ -34,7 +34,7 @@ public class CategoryManagerImpl implements CategoryManager{
 	}
 
 	@Transactional
-	public void enregistrerCategory( Category art)  {
+	public void saveCategory( Category art)  {
 		if(art.getId()==0) {
 			dao.add(art);
 		}else {
@@ -43,7 +43,7 @@ public class CategoryManagerImpl implements CategoryManager{
 	}
 
 	@Transactional
-	public void supprimerCategory( Category id) throws CategoryNonTrouveException {
+	public void deleteCategory( Category id) throws CategoryNonTrouveException {
 		
 		dao.delete(id);
 		
