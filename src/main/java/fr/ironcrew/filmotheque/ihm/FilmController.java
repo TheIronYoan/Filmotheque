@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import fr.ironcrew.filmotheque.bll.FilmManager;
+import fr.ironcrew.filmotheque.bll.FilmNonTrouveException;
 import fr.ironcrew.filmotheque.bll.UserManager;
 import fr.ironcrew.filmotheque.bll.ArtistManager;
 import fr.ironcrew.filmotheque.bll.ArtistNonTrouveException;
@@ -55,25 +56,32 @@ public class FilmController {
 	private ArtistManager am;
 	
 	@RequestMapping(path = "/film/add", method = RequestMethod.GET)
-	public String addFilmPage(ModelMap model) {
-		List<Category> cats=cm.findAllCategory();
-		List<Artist> acts=am.findAllActors();
-		System.out.println(cats.size());
-		List<Artist> dirs=am.findAllDirectors();
-		model.addAttribute("actors", acts);
-		model.addAttribute("directors", dirs);
-		model.addAttribute("cats", cats);
+	public String addFilmPage(ModelMap model) throws FilmNonTrouveException,ArtistNonTrouveException {
+		Artist a = new Artist();
+		a=am.findById(1);
+		a.getFilmsActor();
+		
+		model=addFilmLoader(model);
+		/*Film f = new Film();
+		f=fm.findById(1);
+		System.out.println(f.getActors().size());*/
 		model.addAttribute("numAct", 1);
+		
 		return "FilmCreate";
 	}
 	
 	@RequestMapping(path = "/film/add", method = RequestMethod.POST)
-	public String addFilm(@RequestParam String action, @RequestParam String name,@RequestParam int release,
+	public String addFilm(@RequestParam String action, @RequestParam(required=false) String name,@RequestParam(required=false) int release,
 			@RequestParam int cat,@RequestParam int director,
 			@RequestParam(value="actors[]") int[] actors,
 			@RequestParam int numAct,ModelMap model) throws ParseException, CategoryNonTrouveException, ArtistNonTrouveException {
 	
 		if ("enregistrer".equals(action)) {
+			if(name.length()<1||release<=0) {
+				model=addFilmLoader(model);
+				model.addAttribute("numAct", numAct);
+				return "FilmCreate";
+			}
 			Film film= new Film();
 			film.setName(name);
 			film.setReleaseDate(release);
@@ -93,15 +101,17 @@ public class FilmController {
 		
 		
 		if ("plus".equals(action)) {
-			List<Category> cats=cm.findAllCategory();
-			List<Artist> acts=am.findAllActors();
-			System.out.println(cats.size());
-			List<Artist> dirs=am.findAllDirectors();
-			model.addAttribute("actors", acts);
-			model.addAttribute("directors", dirs);
-			model.addAttribute("cats", cats);
+			model=addFilmLoader(model);
 			model.addAttribute("numAct", numAct+1);
+			return "FilmCreate";
 		}
+		if ("minus".equals(action)) {
+			model=addFilmLoader(model);
+			model.addAttribute("numAct", numAct-1);
+			return "FilmCreate";
+		}
+			List<Film> films = fm.findAllFilms();
+			model.addAttribute("films", films);
 			return "FilmList";
 		}
 	
@@ -110,8 +120,10 @@ public class FilmController {
 	public String listFilm(
 		//	@ModelAttribute("userLogged") User user,
 			ModelMap model) {
+		System.out.println("Debut Load");
 			List<Film> films = fm.findAllFilms();
 			model.addAttribute("films", films);
+			System.out.println("Fin Load");
 			return "FilmList";
 		}
 	
@@ -162,5 +174,14 @@ public class FilmController {
 		}
 	
 
+	public ModelMap addFilmLoader(ModelMap model) {
+		List<Category> cats=cm.findAllCategory();
+		List<Artist> acts=am.findAllActors();
+		List<Artist> dirs=am.findAllDirectors();
+		model.addAttribute("actors", acts);
+		model.addAttribute("directors", dirs);
+		model.addAttribute("cats", cats);
+		return model;
+	}
 }
 

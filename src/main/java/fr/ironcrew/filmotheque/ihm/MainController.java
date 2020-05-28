@@ -57,7 +57,7 @@ public class MainController {
 	
 	@RequestMapping(path = "/init", method = RequestMethod.GET)
 	public String initalize() {
-		User user1= new User(1, "Bruno ", "HUDBERT", "bhudbert", "bruno.hudbert2019@campus-eni.fr", "e10adc3949ba59abbe56e057f20f883e",true, true);
+		/*User user1= new User(1, "Bruno ", "HUDBERT", "bhudbert", "bruno.hudbert2019@campus-eni.fr", "e10adc3949ba59abbe56e057f20f883e",true, true);
 		um.saveUser(user1);
 		User user2= new User(2, "poweruser ", "ENI", "poweruser", "poweruser@campus-eni.fr", "e10adc3949ba59abbe56e057f20f883e", true,false);
 		um.saveUser(user2);
@@ -65,7 +65,7 @@ public class MainController {
 		um.saveUser(user3);
 		User user4= new User(4, "Yoan ", "COTTREL", "ycottrel", "yoan.cottrel2019@campus-eni.fr", "e10adc3949ba59abbe56e057f20f883e",true, true);
 		um.saveUser(user4);
-		
+		*/
 		Category cat1=new Category(1,"Comedie",null);
 		cm.enregistrerCategory(cat1);
 		Category cat2=new Category(2,"Fantastique",null);
