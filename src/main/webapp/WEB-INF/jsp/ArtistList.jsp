@@ -35,7 +35,7 @@
 						 	 <td>Id</td>
 						 	 <td>Nom</td>
 						 	 
-						 	 <td>Type</td>
+						 	 <td class="w-25 text-center">Type</td>
 						 	 <td ></td>
 						 	 <td  ></td>
 					 	 </tr>
@@ -45,7 +45,7 @@
 						    <tr>
 		
 								<td>${artist.id}</td>
-						    	<td class="w-25">${artist.firstname} ${artist.name}</td>
+						    	<td class="w-50">${artist.firstname}&nbsp;${artist.name}</td>
 						    	
 						    	<td class="w-25 text-center">	
 									<c:if test="${artist.actor==true}">

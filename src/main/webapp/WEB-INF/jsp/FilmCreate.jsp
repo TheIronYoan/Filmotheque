@@ -32,7 +32,7 @@
 				<label>Realisateur : </label>
 				<select name="director">
 					<c:forEach items="${directors}" var="director" >
-					<option value="${director.id}">${director.name} rrr  ${director.firstname}</option>
+					<option value="${director.id}"> ${director.firstname} ${director.name}</option>
 					</c:forEach>
 				</select><br>
 				
@@ -41,8 +41,8 @@
 				<c:forEach begin="0" end="${numAct}" var="loop">
 					<select name="actors[]" value="${loop}">
 						<c:forEach items="${actors}" var="actor" >
-						<option value="${actor.id}">${actor.name} ${actor.firstname}</option>
-						</c:forEach>
+						<option value="${actor.id}"> ${actor.firstname} ${actor.name}</option>
+						</c:forEach> 
 					</select>
 				</c:forEach>
 				<button type="submit" name="action" value="plus" >+</button>
