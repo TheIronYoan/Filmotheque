@@ -10,6 +10,10 @@
 	  		<a class="navbar-brand" href="<%=request.getServletContext().getContextPath() %>">Filmotheque</a>
 	    </div>
 	    <div class="col-lg-8 text-center">
+	    
+	    <c:if test="${user!=null}">
+							     
+							    
 	  		  <a class="btn btn-light btn-outline-primary " href="<%=request.getServletContext().getContextPath() %>/app/film/list">
 					Films
 				</a> 
@@ -19,6 +23,7 @@
 				<a class="btn btn-light btn-outline-primary " href="<%=request.getServletContext().getContextPath() %>/app/category/list">
 					Categories
 				</a>
+		  </c:if>
 	    </div>
 	   	<div class="col-lg-2 float-lg-right">
 					

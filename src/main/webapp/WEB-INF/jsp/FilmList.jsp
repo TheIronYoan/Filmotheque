@@ -9,7 +9,9 @@
 
 	<%@ include file="/WEB-INF/jsp/fragments/header.jsp"%>
 	
-			<br/><br/>
+			<br/>
+		
+			<br/>
 	<main role="main">
 
 		<div class=" myMainContainer">
@@ -24,7 +26,7 @@
 									<h1 class="text-center float-left">Films </h1>
 						</div>
 						<div class="col-lg-6"  style="padding-right:70px;">
-						<a class="btn btn-success float-right" style="padding-right:60px;padding-left:60px;" href="<%=request.getServletContext().getContextPath() %>/app/film/edit"> Ajouter Film</a>
+						<a class="btn btn-success float-right" style="padding-right:60px;padding-left:60px;" href="<%=request.getServletContext().getContextPath() %>/app/film/add"> Ajouter Film</a>
 						</div>
 						
 				</div>
@@ -39,30 +41,38 @@
 							 	 <td class=" text-center w-25">Acteur principal</td>
 							 	 <td></td>
 							 	 <td></td>
+							 	 <td></td>
 						 	  </tr>
 							  </thead>
 							  <tbody>
-							<c:forEach items="${films}" var="film" >
+								<c:forEach items="${films}" var="film" >
 							    <tr>
 			
-							      <td>${film.id}</td>
+							      <td>
+								        ${film.id}
+								     
+							      </td>
 							      
-							      <td>${film.name}</td>
+							     <td class="w-25">
+								       ${film.name}
+								    
+							      </td>
 							      
 							      <td>${film.releaseDate}</td>
 							      
 							      <td><c:if test="${not empty film.category}">
-							      	${film.category}
+							      	${film.category.name}
 							      </c:if></td>
 							      
 							      <td><c:if test="${not empty film.director}">
-							      	${film.director}
+							      	${film.director.firstname} ${film.director.name}
 							      </c:if></td>
 							      
 							      <td class=" text-center w-25"><c:if test="${not empty  film.actors}">
-							      	${film.actors[0]}
+							      	${film.actors[0].firstname} ${film.actors[0].name}
 							      </c:if></td>
-							    
+							    <td class="text-center"><a class="btn btn-secondary"  href="<%=request.getServletContext().getContextPath() %>/app/film/show?id=${film.id}"> Voir&nbsp;Fiche</a></td>
+							   
 							 	<td class="text-center"><a class="btn btn-secondary"  href="<%=request.getServletContext().getContextPath() %>/app/film/edit?id=${film.id}"> Editer</a></td>
 							     	<td class="text-center"><a class="btn btn-danger"  href="<%=request.getServletContext().getContextPath() %>/app/film/delete?id=${film.id}"> Supprimer</a></td>
 						    	</tr>

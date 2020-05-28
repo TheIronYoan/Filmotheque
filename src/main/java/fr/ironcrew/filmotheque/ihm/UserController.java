@@ -19,7 +19,7 @@ import fr.ironcrew.filmotheque.bo.User;
 
 
 @RestController
-@SessionAttributes("userLogged")
+@SessionAttributes("user")
 public class UserController {
   
 	@Autowired
@@ -48,10 +48,10 @@ public class UserController {
 		
 			try {
 
-				User testedUser = um.authentification(username, password);
+				User user = um.authentification(username, password);
 				
-				if(!testedUser.getUsername().equals("inconnu")) {
-					model.addAttribute("userLogged", testedUser);
+				if(!user.getUsername().equals("inconnu")) {
+					model.addAttribute("user", user);
 				}
 				else {
 					return new RedirectView("login");
