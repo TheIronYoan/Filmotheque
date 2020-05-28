@@ -60,7 +60,6 @@ public class FilmController {
 		Artist a = new Artist();
 		a=am.findById(1);
 		a.getFilmsActor();
-		
 		model=addFilmLoader(model);
 		/*Film f = new Film();
 		f=fm.findById(1);
@@ -89,15 +88,15 @@ public class FilmController {
 			film.setCategory(category);
 			Artist usedDirector=am.findById(director);
 			film.setDirector(usedDirector);
-			ArrayList<Artist> usedActors= new ArrayList<Artist>();
+			List<Artist> usedActors= film.getActors();
 			for(int actor : actors) {
 				usedActors.add(am.findById(actor));
 			}
 			System.out.println("number="+usedActors.size());
 			
-			film.setActors(usedActors);
 			fm.enregistrerFilm(film);
 		}
+		
 		
 		
 		if ("plus".equals(action)) {
@@ -137,11 +136,11 @@ public class FilmController {
 
 	@RequestMapping(path = "/film/show", method = RequestMethod.GET)
 	public String showFilm(	@RequestParam(defaultValue = "0",name="film") String idFilm ,
-			ModelMap model) {
+			ModelMap model) throws NumberFormatException, FilmNonTrouveException {
 		if(Integer.parseInt(idFilm) != 0) {
 			 
-			// Film showedFilm= fm.findById(Integer.parseInt(idFilm));
-			// model.addAttribute("film",showedFilm);
+			Film showedFilm= fm.findById(Integer.parseInt(idFilm));
+			model.addAttribute("film",showedFilm);
 		 
 		}
 		

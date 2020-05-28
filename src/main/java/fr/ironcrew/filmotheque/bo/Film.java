@@ -1,6 +1,7 @@
 package fr.ironcrew.filmotheque.bo;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -34,28 +36,30 @@ public class Film {
 	private int releaseDate;
 
 	@ManyToOne
-    @JoinColumn(name="category_id", nullable=true)
+    @JoinColumn(name="category_id", nullable=true) 
 	private Category category;
 	
 	@ManyToOne
     @JoinColumn(name="director_id", nullable=true)
 	private Artist director;
 	
-	@ManyToMany
+	
+	@ManyToMany(cascade= CascadeType.MERGE)
     @JoinTable(
-        name = "film_artist", 
+        name = "film_actor", 
         joinColumns = { @JoinColumn(name = "film_id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "artist_id") }
+        inverseJoinColumns = { @JoinColumn(name = "actor_id") }
     )
 	private List<Artist> actors;
 
 
 	public Film() {
 		super();
+		this.actors= new ArrayList<Artist>();
 	}
 
 	public Film(int id, String name, int releaseDate, Category category, Artist director, List<Artist> actors) {
-		super();
+		this();
 		this.id = id;
 		this.name = name;
 		this.releaseDate = releaseDate;
@@ -109,9 +113,9 @@ public class Film {
 		return actors;
 	}
 
-	public void setActors(List<Artist> actors) {
+	/*public void setActors(List<Artist> actors) {
 		this.actors = actors;
-	}
+	}*/
 
 	
 }
