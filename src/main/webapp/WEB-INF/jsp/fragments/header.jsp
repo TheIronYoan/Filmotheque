@@ -26,11 +26,11 @@
 		  </c:if>
 	    </div>
 	   	<div class="col-lg-2 float-lg-right">
-					
+				  <c:if test="${user!=null}">	
 			   <a class="btn btn-light btn-outline-primary float-right" href="<%=request.getServletContext().getContextPath() %>/app/logout">
 					Deconnexion
 				</a>
-			 
+			 </c:if>
 	     </div>
     </div>
 </nav>
