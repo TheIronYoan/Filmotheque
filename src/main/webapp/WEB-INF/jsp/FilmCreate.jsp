@@ -14,14 +14,20 @@
 	<br><br>
 	<main role="main">
 
-		<div class="container myMainContainer">
-			<h1>Nouveau Film</h1>
-			<form action="add" method="POST"  >
+		<div class="container myMainContainer">	<div class="row">
+		<div class="col-lg-2">	
+		</div>
+		<div class="col-lg-8">	
+	
+			<h1 class="text-center">Artistes </h1>
+				<form action="add" method="POST"  class="form"  >
+			  <div class="form-group">
 				<label>Nom: </label>
-				<input type="text" name="name"  required=true/><br>
+				<input type="text" name="name"  required="true"  class="form-control" /><br>
 				
 				<label>Année de sortie: </label>
-				<input type="number" name="release" value="2000" required=true/><br>
+				<input type="number" name="release" value="2000" required="true"  class="form-control"/><br>
+			
 				<label>Categorie : </label>
 				<select name="cat">
 					<c:forEach items="${cats}" var="cat" >
@@ -49,7 +55,15 @@
 				<br><br>
 				<button type="submit" name="action" value="enregistrer" >Enregistrer</button>
 				<button type="submit" name="action" value="annuler"  >Annuler</button>
+				</div>
 			</form>	
+					
+			
+		</div>	
+		<div class="col-lg-2">	
+		</div>
+			
+		
 		</div>
 	</main>
 

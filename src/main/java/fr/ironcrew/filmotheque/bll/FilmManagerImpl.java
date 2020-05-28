@@ -23,8 +23,6 @@ public class FilmManagerImpl implements FilmManager{
 
 	}
 	
-	
-
 	public Film findById(  int id) throws FilmNonTrouveException {
 		Film film = dao.findById(id);
 		if(film==null) {
