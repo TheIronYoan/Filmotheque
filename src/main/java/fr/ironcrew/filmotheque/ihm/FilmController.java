@@ -108,7 +108,6 @@ public class FilmController {
 	
 	@RequestMapping(path = "/film/list", method = RequestMethod.GET)
 	public String listFilm(
-		//	@ModelAttribute("userLogged") User user,
 			ModelMap model) {
 			List<Film> films = fm.findAllFilms();
 			model.addAttribute("films", films);
@@ -116,10 +115,10 @@ public class FilmController {
 		}
 	
 	@RequestMapping(path = "/film/list", method = RequestMethod.POST)
-	public String listFilmViaPost(ModelMap model) {
+	public RedirectView listFilmViaPost(ModelMap model) {
 			List<Film> films = fm.findAllFilms();
 			model.addAttribute("films", films);
-			return "FilmList";
+			return new RedirectView("/Filmotheque/app/film/list");
 		}
 	
 

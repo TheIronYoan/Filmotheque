@@ -10,26 +10,52 @@
 	<br><br>
 	<main role="main">
 		<div class="container myMainContainer">
-		<h1 class="text-center">Edition  ${userLogged.username}
-			<c:if test="${film.id==0}">
-				Nouvelle
-			 </c:if>
-			 Tache 
-			 <c:if test="${todo.id!=0}">
-				 ${todo.id}
-			 </c:if>
-		 </h1>
-		 <form action="/TODO/app/edit" method="post">	
-			<div class="form-group">
-				
-	  			<input type="hidden" class="form-control"  name="task" id="name" aria-describedby="" placeholder="" value="${todo.id}">
-				<label for="description">Description</label>
-				<textarea class="form-control rounded-0" name="description" id="description" rows="10" >
-					${todo.description}
-				</textarea>
-			</div>
-			<button class="btn btn-lg btn-block btn-secondary" type="submit">Enregistrer</button>
-		</form>
+		<div class="row">
+				<div class="col-lg-3">	
+				</div>
+				<div class="col-lg-6">	
+	
+					<h1 class="text-center">Edition artiste 
+					 </h1>
+						<form action="edit" method="POST"  >
+						<input type="hidden" name="id" value="
+							<c:if test="${!empty artist.id}">
+											${artist.id}
+							</c:if>
+							<c:if test="${empty artist.id}">
+											0
+							</c:if>
+						"/>
+							<label>Prenom: </label>
+							<input type="text" name="firstname" required="true" value="${artist.firstname}"/><br>
+							<label>Nom: </label>
+							<input type="text" name="name" required="true" value="${artist.name}"/><br>
+							<label>Realisateur: </label>
+							<input type="checkbox" name="director"  value="true"
+								<c:if test="${artist.director}">
+										checked 
+								</c:if>
+							/>	
+							<label>Acteur: </label>
+							<input type="checkbox" name="actor" value="true" 
+							<c:if test="${artist.actor}">
+										checked 
+							</c:if>
+							/><br>
+							<label>Date de naissance: </label>
+							<input type="date" name="birth"   required="true" value="${birthDate}" /><br>
+							<label>Nationalité: </label>
+							<input type="text" name="nation"  required="true" value="${artist.nationality}"/><br>
+							<br>
+							
+							
+							<button type="submit" name="action" value="enregistrer" >Enregistrer</button>
+							<button type="submit" name="action" value="annuler"  >Annuler</button>
+						</form>	
+				</div>
+				<div class="col-lg-3">	
+				</div>
+			</div>	
 		</div>
 	</main>
 

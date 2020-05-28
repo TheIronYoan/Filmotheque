@@ -18,11 +18,9 @@ public class ArtistManagerImpl implements ArtistManager{
 	@Autowired
 	private ArtistDAO dao;
 	
-	
 	public ArtistManagerImpl() {
 
 	}
-	
 	
 
 	public Artist findById(  int id) throws ArtistNonTrouveException {
@@ -34,7 +32,7 @@ public class ArtistManagerImpl implements ArtistManager{
 	}
 
 	@Transactional
-	public void enregistrerArtist( Artist art)  {
+	public void saveArtist( Artist art)  {
 		if(art.getId()==0) {
 			dao.add(art);
 		}else {
@@ -43,19 +41,16 @@ public class ArtistManagerImpl implements ArtistManager{
 	}
 
 	@Transactional
-	public void supprimerArtist( Artist id) throws ArtistNonTrouveException {
+	public void deleteArtist( Artist artist) throws ArtistNonTrouveException {
 		
-		dao.delete(id);
+		dao.delete(artist);
 		
 	}
-
-
 
 	@Override
 	public List<Artist> findAllArtist() {
 		return dao.findAll();
 	}
-
 
 
 	@Override
@@ -65,13 +60,10 @@ public class ArtistManagerImpl implements ArtistManager{
 	}
 
 
-
 	@Override
 	public List<Artist> findAllDirectors() {
 		// TODO Auto-generated method stub
 		return dao.findAllDirectors();
 	}
-
-
 
 }

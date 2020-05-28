@@ -29,6 +29,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import fr.ironcrew.filmotheque.bll.FilmManager;
 import fr.ironcrew.filmotheque.bll.UserManager;
 import fr.ironcrew.filmotheque.bll.ArtistManager;
+import fr.ironcrew.filmotheque.bll.ArtistNonTrouveException;
 import fr.ironcrew.filmotheque.bll.CategoryManager;
 import fr.ironcrew.filmotheque.bo.Artist;
 import fr.ironcrew.filmotheque.bo.Category;
@@ -54,42 +55,67 @@ public class ArtistController {
 	private CategoryManager cm;
 
 		
-	
+	private DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 	
 	@RequestMapping(path = "/artist/add", method = RequestMethod.GET)
 	public String addArtistPage() {
-		return "ArtistCreate";
+		return "ArtistEdit";
 	}
 	
 	@RequestMapping(path = "/artist/add", method = RequestMethod.POST)
-	public String addArtist(@RequestParam String action, @RequestParam String firstname,@RequestParam String name,
-			@RequestParam(defaultValue = "false", required=false) boolean director,@RequestParam(defaultValue = "false", required=false) boolean actor,
-			@RequestParam String birth,@RequestParam String nation) throws ParseException {
-		if ("enregistrer".equals(action)) {
-			Artist art= new Artist();
-			art.setFirstname(firstname);
-			art.setName(name);
-			art.setDirector(director);
-			art.setActor(actor);
-
-			System.out.println(birth);
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-			Date birthDate=format.parse(birth);
-			art.setBirth(birthDate);
-			art.setNationality(nation);
-			am.enregistrerArtist(art);
+	public String addArtist(@RequestParam String action, 
+			@RequestParam String firstname,
+			@RequestParam String name,
+			@RequestParam(defaultValue = "false", required=false) boolean director,
+			@RequestParam(defaultValue = "false", required=false) boolean actor,
+			@RequestParam String birth,@RequestParam String nation) throws ParseException 
+		{
+			if ("enregistrer".equals(action)) {
+				Artist art= new Artist();
+				art.setFirstname(firstname);
+				art.setName(name);
+				art.setDirector(director);
+				art.setActor(actor);
+			
+				Date birthDate=format.parse(birth);
+				art.setBirth(birthDate);
+				art.setNationality(nation);
+				am.saveArtist(art);
+				}
+				return "FilmList";
 		}
-			return "FilmList";
+	@RequestMapping(path = "/artist/edit", method = RequestMethod.POST)
+	public RedirectView editArtist(@RequestParam String action, 
+			@RequestParam(defaultValue = "0",name="id") int id,
+			@RequestParam String firstname,
+			@RequestParam String name,
+			@RequestParam(defaultValue = "false", required=false) boolean director,
+			@RequestParam(defaultValue = "false", required=false) boolean actor,
+			@RequestParam String birth,@RequestParam String nation) throws ParseException 
+		{
+			if ("enregistrer".equals(action)) {
+				
+				Date birthDate=format.parse(birth);
+				Artist art= new Artist(id,firstname,name,director,actor,birthDate,nation,null);
+				am.saveArtist(art);
+				}
+			return new RedirectView("/Filmotheque/app/artist/list");
 		}
 	
 	@RequestMapping(path = "/artist/edit", method = RequestMethod.GET)
-	public String editArtist(
-			@RequestParam(defaultValue = "0",name="artist") String idArtist 
-			) {
-		if(Integer.parseInt(idArtist) != 0) {
-			// Film editedFilm= tm.findById(Integer.parseInt(idFilm));
-			// model.addAttribute("film",editedFilm);
-		}
+	public String editArtist(ModelMap model,
+			@RequestParam(defaultValue = "0",name="id") int id 			
+			) throws NumberFormatException, ArtistNonTrouveException {
+		
+			Artist artist = am.findById(id);
+			
+			if(artist.getBirth()!=null) {
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String strDate= formatter.format(artist.getBirth());
+				model.addAttribute("birthDate", strDate);
+			}
+			model.addAttribute("artist", artist);
+		
 		return "ArtistEdit";
 	}
 	
@@ -98,6 +124,24 @@ public class ArtistController {
 			List<Artist> artists = am.findAllArtist();
 			model.addAttribute("artists", artists);
 			return "ArtistList";
+		}
+	@RequestMapping(path = "/artist/delete", method = RequestMethod.GET)
+	public String deleteCalidationArtist(
+			@RequestParam(defaultValue = "0",name="id") int id,
+			ModelMap model) throws ArtistNonTrouveException {
+			Artist artist =am.findById(id);
+			model.addAttribute("artist", artist);
+			return "ArtistDelete";
+		}
+	@RequestMapping(path = "/artist/delete", method = RequestMethod.POST)
+	public RedirectView deleteArtist(
+					@RequestParam(defaultValue = "0",name="id") int id,
+					ModelMap model) throws ArtistNonTrouveException {
+			System.out.println("j'appelle bien le delete en POST");
+			Artist artist =am.findById(id);
+			am.deleteArtist(artist);
+			
+			return new RedirectView("/Filmotheque/app/artist/list");
 		}
 	
 }

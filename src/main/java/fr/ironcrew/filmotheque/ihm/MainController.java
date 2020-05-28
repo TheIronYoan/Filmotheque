@@ -75,25 +75,25 @@ public class MainController {
 		
 		
 		Artist artist1= new Artist(1,"Daniel","RADCLIFE",false,true,null,"Anglais",null);
-		am.enregistrerArtist(artist1);
+		am.saveArtist(artist1);
 		Artist artist2= new Artist(2,"Chris","PINE",false,true,null,"Americain",null);
-		am.enregistrerArtist(artist2);
+		am.saveArtist(artist2);
 		Artist artist3= new Artist(3,"Jeffrey Jacob","ABRAMS",true,false,null,"Americain",null);
-		am.enregistrerArtist(artist3);
+		am.saveArtist(artist3);
 		Artist artist4= new Artist(4,"Kenneth","BRANAGH",true,true,null,"Americain",null);
-		am.enregistrerArtist(artist4);
+		am.saveArtist(artist4);
 		Artist artist5= new Artist(5,"Michael J.","FOX",false,true,null,"Americain",null);
-		am.enregistrerArtist(artist5);
+		am.saveArtist(artist5);
 		Artist artist6= new Artist(6,"Robert","ZEMECKIS",true,false,null,"Americain",null);
-		am.enregistrerArtist(artist6);
+		am.saveArtist(artist6);
 		Artist artist7= new Artist(7,"Chris","COLLOMBUS",true,false,null,"Americain",null);
-		am.enregistrerArtist(artist7);
+		am.saveArtist(artist7);
 		Artist artist8= new Artist(8,"Emma","WATSON",false,true,null,"Anglais",null);
-		am.enregistrerArtist(artist8);
+		am.saveArtist(artist8);
 		Artist artist9= new Artist(9,"Ruppert","GRINT",false,true,null,"Anglais",null);
-		am.enregistrerArtist(artist9);
+		am.saveArtist(artist9);
 		Artist artist10= new Artist(10,"Zachary","QUINTO",false,true,null,"Americain",null);
-		am.enregistrerArtist(artist10);
+		am.saveArtist(artist10);
 		
 		
 		Film film1=new Film(1, "Sengoku Gensokyo 4 - The Grand War", 2022, null, null, null);
