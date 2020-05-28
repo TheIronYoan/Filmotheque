@@ -23,10 +23,10 @@
 				<form action="add" method="POST"  class="form"  >
 			  <div class="form-group">
 				<label>Nom: </label>
-				<input type="text" name="name"  required="true"  class="form-control" /><br>
+				<input type="text" name="name"  class="form-control" /><br>
 				
 				<label>Année de sortie: </label>
-				<input type="number" name="release" value="2000" required="true"  class="form-control"/><br>
+				<input type="number" name="release" value="2000" class="form-control"/><br>
 			
 				<label>Categorie : </label>
 				<select name="cat">
@@ -52,6 +52,7 @@
 					</select>
 				</c:forEach>
 				<button type="submit" name="action" value="plus" >+</button>
+				<button type="submit" name="action" value="minus" >-</button>
 				<br><br>
 				<button type="submit" name="action" value="enregistrer" >Enregistrer</button>
 				<button type="submit" name="action" value="annuler"  >Annuler</button>

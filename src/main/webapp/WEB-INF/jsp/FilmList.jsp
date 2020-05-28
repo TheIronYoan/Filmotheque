@@ -67,9 +67,11 @@
 							      <td><c:if test="${not empty film.director}">
 							      	${film.director.firstname} ${film.director.name}
 							      </c:if></td>
-							      
+
+
 							      <td class=" text-center w-25">
-							      <c:if test="${not empty  film.actors}">
+							      <c:if test="${not empty film.actors}">
+
 							      	${film.actors[0].firstname} ${film.actors[0].name}
 							      </c:if></td>
 							    <td class="text-center"><a class="btn btn-secondary"  href="<%=request.getServletContext().getContextPath() %>/app/film/show?id=${film.id}"> Voir&nbsp;Fiche</a></td>
