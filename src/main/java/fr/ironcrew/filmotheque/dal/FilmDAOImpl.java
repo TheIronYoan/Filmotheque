@@ -17,14 +17,15 @@ public class FilmDAOImpl implements FilmDAO{
 	@Override
 	public void add(Film film) {
 		em.persist(film);
+		em.flush();
 		
 	}
 
 	@Override
 	public void update(Film film) {
-		if(!em.contains(film)) {
+		//if(!em.contains(film)) {
 			em.merge(film);
-		}
+		//}
 		em.flush();
 		
 	}

@@ -19,8 +19,10 @@
 		</div>
 		<div class="col-lg-8">	
 	
+
 			<h1 class="text-center">Creation Film </h1>
 				<form action="add" method="POST"  class="form"  >
+
 			  <div class="form-group">
 				<label>Nom: </label>
 				<input type="text" name="name"  class="form-control" /><br>
