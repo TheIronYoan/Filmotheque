@@ -34,7 +34,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 		if(!em.contains(art)) {
 			em.merge(art);
 		}
-		em.remove(art);
+		em.remove(em.contains(art) ? art : em.merge(art));
 		
 	}
 

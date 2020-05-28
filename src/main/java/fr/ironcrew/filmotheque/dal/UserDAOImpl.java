@@ -35,7 +35,7 @@ public class UserDAOImpl implements UserDAO{
 		if(!em.contains(user)) {
 			em.merge(user);
 		}
-		em.remove(user);
+		em.remove(em.contains(user) ? user : em.merge(user));
 		
 	}
 

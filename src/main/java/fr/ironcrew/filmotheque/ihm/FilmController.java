@@ -161,10 +161,11 @@ public class FilmController {
 	
 	@RequestMapping(path = "/film/delete", method = RequestMethod.GET)
 	public RedirectView deleteFilm(	@RequestParam(defaultValue = "0",name="id") String idFilm ,
-			ModelMap model) throws NumberFormatException {
+			ModelMap model) throws NumberFormatException, FilmNonTrouveException {
 			
 			if(Integer.parseInt(idFilm) != 0) {
-				System.out.println(">>======>>>   Je supprime le film "+ idFilm);
+				Film film=fm.findById(Integer.parseInt(idFilm));
+				fm.supprimerFilm(film);
 				// Film editedFilm= tm.findById(Integer.parseInt(idFilm));
 				// model.addAttribute("film",editedFilm);
 			}

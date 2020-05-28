@@ -35,7 +35,7 @@ public class FilmDAOImpl implements FilmDAO{
 		if(!em.contains(film)) {
 			em.merge(film);
 		}
-		em.remove(film);
+		em.remove(em.contains(film) ? film : em.merge(film));
 		
 	}
 

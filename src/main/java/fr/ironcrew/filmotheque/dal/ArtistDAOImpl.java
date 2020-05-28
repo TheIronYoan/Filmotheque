@@ -51,7 +51,7 @@ public class ArtistDAOImpl implements ArtistDAO{
 	@Override
 	public void delete(int id) {
 		Artist art = findById(id);
-		delete(art);
+		delete(em.contains(art) ? art : em.merge(art));
 		
 	}
 
