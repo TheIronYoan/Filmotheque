@@ -140,16 +140,20 @@ public class FilmController {
 
 	//affiche le film souhaité (non finalisé)
 	@RequestMapping(path = "/film/show", method = RequestMethod.GET)
-	public String showFilm(	@RequestParam(defaultValue = "0",name="film") String idFilm ,
+	public String showFilm(	@RequestParam(defaultValue = "0",name="id") String idFilm ,
 			ModelMap model) throws NumberFormatException, FilmNonTrouveException {
-		if(Integer.parseInt(idFilm) != 0) {
-			 
-			Film showedFilm= fm.findById(Integer.parseInt(idFilm));
-			model.addAttribute("film",showedFilm);
-		 
-		}
+		System.out.println (idFilm);
+			if(Integer.parseInt(idFilm) != 0) {
+				model=addFilmLoader(model);
+				model.addAttribute("numAct", 1);
+				Film film= fm.findById(Integer.parseInt(idFilm));
+				model.addAttribute("film",film);
+				
+				return "FilmShow";
+			}
+			
+			return "FilmList";
 		
-			return "FilmShow";		
 		}
 	
 	

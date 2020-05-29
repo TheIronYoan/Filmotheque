@@ -11,7 +11,7 @@
 	    </div>
 	    <div class="col-lg-8 text-center">
 	    
-	    <c:if test="${user!=null}">
+	    <c:if test="${user.name!=null}">
 							     
 							    
 	  		  <a class="btn btn-light btn-outline-primary " href="<%=request.getServletContext().getContextPath() %>/app/film/list">

@@ -13,7 +13,7 @@
 <main role="main">
 		<div class="container myMainContainer">
 		<div class="row">
-				<div class="col-lg-3">	
+				<div class="col-lg-odelAttribute User user,3">	
 				</div>
 				<div class="col-lg-6">	
 				<br/><br/>
