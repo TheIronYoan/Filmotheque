@@ -114,10 +114,8 @@ public class FilmController {
 	@RequestMapping(path = "/film/list", method = RequestMethod.GET)
 	public String listFilm(
 			ModelMap model) {
-		System.out.println("Debut Load");
 			List<Film> films = fm.findAllFilms();
 			model.addAttribute("films", films);
-			System.out.println("Fin Load");
 			return "FilmList";
 		}
 	
@@ -224,6 +222,24 @@ public class FilmController {
 			return new RedirectView("/Filmotheque/app/film/list");
 		}
 	
+	@RequestMapping(path = "/film/search", method = RequestMethod.GET)
+	public String searchFilm(ModelMap model){
+			model=addFilmLoader( model);
+			return "FilmSearch";
+		}
+	
+	@RequestMapping(path = "/film/search", method = RequestMethod.POST)
+	public String searchFilmSend(
+			@RequestParam(required=false) String name,
+			@RequestParam(required=false) int releaseAfter,@RequestParam(required=false) int releaseBefore,
+			@RequestParam int cat,@RequestParam int director,
+			@RequestParam int actor,ModelMap model)
+					throws ParseException, CategoryNonTrouveException, ArtistNonTrouveException, NumberFormatException, FilmNonTrouveException {
+			List<Film> films=fm.rechercheFilm(name, cat, releaseAfter, releaseBefore, director, actor);
+			model.addAttribute("films", films);
+			return "FilmList";
+		}
+	
 
 	public ModelMap addFilmLoader(ModelMap model) {
 		List<Category> cats=cm.findAllCategory();
@@ -234,5 +250,9 @@ public class FilmController {
 		model.addAttribute("cats", cats);
 		return model;
 	}
+	
+	
+	
+	
 }
 

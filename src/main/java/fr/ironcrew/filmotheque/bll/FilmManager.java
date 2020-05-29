@@ -16,5 +16,7 @@ public interface FilmManager {
 
 	public void supprimerFilm( Film id) throws FilmNonTrouveException ;
 	
+	public List<Film> rechercheFilm(String name, int cat, int minYear, int maxYear, int real, int act);
+	
 	public List<Film> findAllFilms();
 }

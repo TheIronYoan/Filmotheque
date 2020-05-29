@@ -66,4 +66,10 @@ public class FilmManagerImpl implements FilmManager{
 		
 	}
 
+	@Override
+	public List<Film> rechercheFilm(String name, int cat, int minYear, int maxYear, int real, int act) {
+		return dao.findFilmWithParam(name, cat, minYear, maxYear, real, act);
+		
+	}
+
 }

@@ -56,4 +56,41 @@ public class FilmDAOImpl implements FilmDAO{
 		
 	}
 
+	@Override
+	public List<Film> findFilmWithParam(String name, int cat, int minYear, int maxYear, int real, int act) {
+		String query="select f from Film f left join f.actors a ";
+		if(name.length()>0||cat>0||minYear>0||maxYear>0||real>0||act>0) {
+			query+="where ";
+		}
+		if(name.length()>0) {
+			query+="f.name LIKE '%"+name+"%' AND ";
+		}
+		if(cat>0) {
+			query+="f.category="+cat+" AND ";
+		}
+		
+		if(minYear>0) {
+			query+="f.releaseDate>"+minYear+" AND ";
+		}
+		
+		if(maxYear>0) {
+			query+="f.releaseDate<"+maxYear+" AND ";
+		}
+		
+		if(real>0) {
+			query+="f.director = '"+real+"' AND ";
+		}
+		
+		if(act>0) {
+			query+="a.id = "+act+" AND ";
+		}
+		
+		
+		query=query.substring(0, query.length() - 4);
+		return em.createQuery(query, Film.class).getResultList();
+				
+				
+		
+	}
+
 }

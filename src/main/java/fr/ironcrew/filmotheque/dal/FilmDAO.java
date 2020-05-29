@@ -14,6 +14,8 @@ public interface FilmDAO {
 
 	public void delete(int id);
 	
+	public List<Film> findFilmWithParam(String name, int cat, int minYear, int maxYear, int real, int act);
+	
 	public Film findById(int id);
 	
 	public List<Film> findAll();
