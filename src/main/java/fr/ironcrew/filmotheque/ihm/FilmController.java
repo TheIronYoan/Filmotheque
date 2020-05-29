@@ -57,13 +57,9 @@ public class FilmController {
 	
 	@RequestMapping(path = "/film/add", method = RequestMethod.GET)
 	public String addFilmPage(ModelMap model) throws FilmNonTrouveException,ArtistNonTrouveException {
-		Artist a = new Artist();
-		a=am.findById(1);
-		a.getFilmsActor();
+
 		model=addFilmLoader(model);
-		/*Film f = new Film();
-		f=fm.findById(1);
-		System.out.println(f.getActors().size());*/
+
 		model.addAttribute("numAct", 1);
 		
 		return "FilmCreate";
@@ -149,15 +145,71 @@ public class FilmController {
 	
 	
 	@RequestMapping(path = "/film/edit", method = RequestMethod.GET)
-	public String editFilm(	@RequestParam(defaultValue = "0",name="film") String idFilm ,
-			ModelMap model) throws NumberFormatException {
-			
+	public String editFilm(	@RequestParam(defaultValue = "0",name="id") String idFilm ,
+			ModelMap model) throws NumberFormatException, FilmNonTrouveException {
+		System.out.println (idFilm);
 			if(Integer.parseInt(idFilm) != 0) {
-				// Film editedFilm= tm.findById(Integer.parseInt(idFilm));
-				// model.addAttribute("film",editedFilm);
+				model=addFilmLoader(model);
+				model.addAttribute("numAct", 1);
+				Film film= fm.findById(Integer.parseInt(idFilm));
+				model.addAttribute("film",film);
+				
+				return "FilmEdit";
 			}
+			
+			return "FilmList";
+		}
+	
+	@RequestMapping(path = "/film/edit", method = RequestMethod.POST)
+	public String editFilmEdit(@RequestParam String action,
+			@RequestParam(required=false) String id,
+			@RequestParam(required=false) String name,
+			@RequestParam(required=false) int release,@RequestParam int cat,@RequestParam int director,
+			@RequestParam(value="actors[]") int[] actors, @RequestParam int numAct,ModelMap model)
+					throws ParseException, CategoryNonTrouveException, ArtistNonTrouveException, NumberFormatException, FilmNonTrouveException {
+	
+		if ("enregistrer".equals(action)) {
+			if(name.length()<1||release<=0) {
+				model=addFilmLoader(model);
+				model.addAttribute("numAct", 1);
+				Film film= fm.findById(Integer.parseInt(id));
+				model.addAttribute("film",film);
+				
+				return "FilmEdit";
+			}
+			Film film= fm.findById(Integer.parseInt(id));
+			film.setName(name);
+			film.setReleaseDate(release);
+			Category category=cm.findById(cat);
+			film.setCategory(category);
+			Artist usedDirector=am.findById(director);
+			film.setDirector(usedDirector);
+			/*List<Artist> usedActors= film.getActors();
+			for(int actor : actors) {
+				usedActors.add(am.findById(actor));
+			}
+			System.out.println("number="+usedActors.size());*/
+			
+			fm.modifierFilm(film);
+		}
+		
+		
+		
+		if ("plus".equals(action)) {
+			model=addFilmLoader(model);
+			model.addAttribute("numAct", numAct+1);
 			return "FilmCreate";
 		}
+		if ("minus".equals(action)) {
+			model=addFilmLoader(model);
+			model.addAttribute("numAct", numAct-1);
+			return "FilmCreate";
+		}
+			List<Film> films = fm.findAllFilms();
+			model.addAttribute("films", films);
+			return "FilmList";
+		}
+		
 	
 	@RequestMapping(path = "/film/delete", method = RequestMethod.GET)
 	public RedirectView deleteFilm(	@RequestParam(defaultValue = "0",name="id") String idFilm ,

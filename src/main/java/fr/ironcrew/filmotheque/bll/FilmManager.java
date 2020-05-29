@@ -11,6 +11,8 @@ public interface FilmManager {
 	public Film findById(  int id) throws FilmNonTrouveException ;
 
 	public void enregistrerFilm( Film film)  ;
+	
+	public void modifierFilm( Film film)  ;
 
 	public void supprimerFilm( Film id) throws FilmNonTrouveException ;
 	

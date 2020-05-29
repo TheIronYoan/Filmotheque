@@ -6,7 +6,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Créer un Artiste</title>
+<title>Créer un Film</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/fragments/header.jsp"%>

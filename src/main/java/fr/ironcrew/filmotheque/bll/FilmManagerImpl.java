@@ -54,4 +54,16 @@ public class FilmManagerImpl implements FilmManager{
 		return dao.findAll();
 	}
 
+	
+	@Transactional
+	public void modifierFilm(Film film) {
+		System.out.println(film.getId()+"+ c'est l'od");
+			if(film.getId()==0) {
+				dao.add(film);
+			}else {
+				dao.update(film);
+			}
+		
+	}
+
 }
