@@ -54,7 +54,7 @@ public class MainController {
 	private CategoryManager cm;
 
 	
-	
+	//Permet de créer automatiquement un jeu d'essai, pratique quand on utilise create
 	@RequestMapping(path = "/init", method = RequestMethod.GET)
 	public String initalize() {
 		User user1= new User(1, "Bruno ", "HUDBERT", "bhudbert", "bruno.hudbert2019@campus-eni.fr", "e10adc3949ba59abbe56e057f20f883e",true, true);

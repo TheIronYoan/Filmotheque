@@ -55,6 +55,7 @@ public class FilmController {
 	@Autowired
 	private ArtistManager am;
 	
+	//charge la création de films
 	@RequestMapping(path = "/film/add", method = RequestMethod.GET)
 	public String addFilmPage(ModelMap model) throws FilmNonTrouveException,ArtistNonTrouveException {
 
@@ -65,12 +66,14 @@ public class FilmController {
 		return "FilmCreate";
 	}
 	
+	//crée un nouveau film
 	@RequestMapping(path = "/film/add", method = RequestMethod.POST)
 	public String addFilm(@RequestParam String action, @RequestParam(required=false) String name,@RequestParam(required=false) int release,
 			@RequestParam int cat,@RequestParam int director,
-			@RequestParam(value="actors[]") int[] actors,
+			@RequestParam(value="actors[]") int[] actors,	//permet d'obtenir une liste d'acteurs via le formulaire (j'ai pas les détails de comment ca marche malheureusement, mais il semblerait qu'avec une certaine syntaxe html on peut imiter une liste)
 			@RequestParam int numAct,ModelMap model) throws ParseException, CategoryNonTrouveException, ArtistNonTrouveException {
-	
+		
+		//enregistre le nouveau film
 		if ("enregistrer".equals(action)) {
 			if(name.length()<1||release<=0) {
 				model=addFilmLoader(model);
@@ -85,6 +88,8 @@ public class FilmController {
 			Artist usedDirector=am.findById(director);
 			film.setDirector(usedDirector);
 			List<Artist> usedActors= film.getActors();
+			
+			//décompose la liste des acteurs obtenu en parametres
 			for(int actor : actors) {
 				usedActors.add(am.findById(actor));
 			}
@@ -94,15 +99,20 @@ public class FilmController {
 		}
 		
 		
-		
+		//ajoute un nouveau champ acteur
 		if ("plus".equals(action)) {
 			model=addFilmLoader(model);
 			model.addAttribute("numAct", numAct+1);
 			return "FilmCreate";
 		}
+		//retire un champ acteur
 		if ("minus".equals(action)) {
 			model=addFilmLoader(model);
-			model.addAttribute("numAct", numAct-1);
+			if(numAct>1) {
+				model.addAttribute("numAct", numAct-1);
+			}else {
+				model.addAttribute("numAct", numAct);
+			}
 			return "FilmCreate";
 		}
 			List<Film> films = fm.findAllFilms();
@@ -110,7 +120,7 @@ public class FilmController {
 			return "FilmList";
 		}
 	
-	
+	//charge la liste des films
 	@RequestMapping(path = "/film/list", method = RequestMethod.GET)
 	public String listFilm(
 			ModelMap model) {
@@ -119,6 +129,7 @@ public class FilmController {
 			return "FilmList";
 		}
 	
+	//charge la liste des films
 	@RequestMapping(path = "/film/list", method = RequestMethod.POST)
 	public RedirectView listFilmViaPost(ModelMap model) {
 			List<Film> films = fm.findAllFilms();
@@ -127,6 +138,7 @@ public class FilmController {
 		}
 	
 
+	//affiche le film souhaité (non finalisé)
 	@RequestMapping(path = "/film/show", method = RequestMethod.GET)
 	public String showFilm(	@RequestParam(defaultValue = "0",name="film") String idFilm ,
 			ModelMap model) throws NumberFormatException, FilmNonTrouveException {
@@ -141,7 +153,7 @@ public class FilmController {
 		}
 	
 	
-	
+	//charge la modification de films
 	@RequestMapping(path = "/film/edit", method = RequestMethod.GET)
 	public String editFilm(	@RequestParam(defaultValue = "0",name="id") String idFilm ,
 			ModelMap model) throws NumberFormatException, FilmNonTrouveException {
@@ -158,6 +170,8 @@ public class FilmController {
 			return "FilmList";
 		}
 	
+	
+	//Modifie le film, fonctonne similairement a ajout film
 	@RequestMapping(path = "/film/edit", method = RequestMethod.POST)
 	public String editFilmEdit(@RequestParam String action,
 			@RequestParam(required=false) String id,
@@ -182,6 +196,8 @@ public class FilmController {
 			film.setCategory(category);
 			Artist usedDirector=am.findById(director);
 			film.setDirector(usedDirector);
+			
+			//Modifier les acteurs est un peu trop complexe pour le temps fourni avec notre systeme
 			/*List<Artist> usedActors= film.getActors();
 			for(int actor : actors) {
 				usedActors.add(am.findById(actor));
@@ -222,12 +238,16 @@ public class FilmController {
 			return new RedirectView("/Filmotheque/app/film/list");
 		}
 	
+	
+	//Ammene a la recherche de film
 	@RequestMapping(path = "/film/search", method = RequestMethod.GET)
 	public String searchFilm(ModelMap model){
 			model=addFilmLoader( model);
 			return "FilmSearch";
 		}
 	
+	
+	//lance la requete avec filtres des films
 	@RequestMapping(path = "/film/search", method = RequestMethod.POST)
 	public String searchFilmSend(
 			@RequestParam(required=false) String name,
@@ -240,7 +260,7 @@ public class FilmController {
 			return "FilmList";
 		}
 	
-
+	//charge les listes pour les options categorie/realisateur/acteur
 	public ModelMap addFilmLoader(ModelMap model) {
 		List<Category> cats=cm.findAllCategory();
 		List<Artist> acts=am.findAllActors();

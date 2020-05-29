@@ -26,6 +26,7 @@
 									<h1 class="text-center float-left">Films </h1>
 						</div>
 						<div class="col-lg-6"  style="padding-right:70px;">
+						<a class="btn btn-success float-right" style="padding-right:60px;padding-left:60px;" href="<%=request.getServletContext().getContextPath() %>/app/film/search"> Rechercher Film</a>
 						<a class="btn btn-success float-right" style="padding-right:60px;padding-left:60px;" href="<%=request.getServletContext().getContextPath() %>/app/film/add"> Ajouter Film</a>
 						</div>
 						
